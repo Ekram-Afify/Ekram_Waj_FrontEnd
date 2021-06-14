@@ -1,0 +1,367 @@
+<div class="container-dashboard container-customize-admin">
+    <div class="title-page">
+        <h2 class="color-Jade">{{ 'CategoryDetails' |localize }}</h2>
+    </div>
+    <div class="header-admin-body">
+        <div class="breadcrumb">
+            <p-breadcrumb [model]="items"></p-breadcrumb>
+        </div>
+    </div>
+    <div class="body-dashboard">
+        <div class="row row-newReaserch">
+            <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+                <div class="body-section-dashboard-right">
+                    <div class="container-cards-design-1 pt-0">
+                        <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+                            <li class="list-cards-design-1 card-green">
+                                <div class="list-inside">
+  
+                                    <div class="body-cards-design-1">
+                                        <div class="container-Add-New-Research-Step pt-0 pr-0">
+                                            <div class="inside-Add-New-Research-Step">
+                                                
+                                              
+                                                        <form #firstForm="ngForm">
+                                                           
+                                                            
+                                                            <div
+                                                                class="container-form-field container-form-fields-section-uploadFile">
+                                                                <div
+                                                                    class="container-fileUpload-with-fields mb-5 d-flex">
+                                                                    <div class="container-fields col">
+                                                                       
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'address' |localize }}
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                    disabled
+                                                                                                    value="{{customerAddress.adress}}"
+                                                                                                        name="name"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type=""
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+  
+  
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'title ' |localize }}
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                    disabled
+                                                                                                    value="{{customerAddress.title}}"
+                                                                                                        name="nameAr"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+  
+                                                                        <div
+                                                                        class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                        <div class="section-inside">
+                                                                            <div
+                                                                                class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                {{ 'langLat ' |localize }}
+                                                                            </div>
+                                                                            <div
+                                                                                class="col container-Engine-information">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                        class="col-12 list-Engine-information">
+                                                                                        <div
+                                                                                            class="section-form-field">
+                                                                                            <span
+                                                                                                class="ui-float-label section-clear-input design-float-input">
+                                                                                                <input
+                                                                                                disabled
+                                                                                                    name="description"
+                                                                                                    value="{{customerAddress.langLat}}"
+                                                                                                    class="float-input floatInput1"
+                                                                                                    #title
+                                                                                                    type="text"
+                                                                                                    size="30"
+                                                                                                    pInputText>
+                                                                                                    <!-- <span class="icon-input-L" (click)="destinationFram.show()"><img
+                                                                                                        style="display: block;
+                                                                                                        margin: auto;    position: relative;cursor: pointer;
+                                                                                                        top: 6px;"
+                                                                                                        src="assets/images/GoogleMaps_Button.svg"
+                                                                                                        alt=""
+                                                                                                        /></span> -->
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                       
+                                                                    
+  
+                                                                    </div>
+                                                             
+                                                                </div>
+                                                            </div>
+                                                            <div class="button-directions">
+                                                                <!-- <button
+                                                                    class="btn border-gray ml-2 col color-Jade button-design button-cancel-step-form" (click)="cancel()">{{ 'Cancel' |localize }}</button> -->
+                                                                <button type="button" (click)="back()"
+                                                                    class="btn border-gray mr-2 col color-white background-color-Jade button-design">{{ 'Back' |localize }}</button>
+                                                            </div>
+                                                        </form>
+                                                   
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </li>
+  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+  
+    </div>
+  </div>
+  
+  
+
+
+
+
+
+
+
+<!-- 
+<div
+bsModal
+  #pickupFram="bs-modal"
+  class="modal fade left"
+  id="frameModalTop"
+  tabindex="-1"
+  userType="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+  style="overflow: auto;"
+>
+  <div class="modal-dialog" userType="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4
+          class="modal-title w-100 font-weight-bold"
+          style="text-align: left;"
+        >
+          {{
+            "Chooselocation" | localize
+          }}
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="pickupFram.hide()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body mx-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label></label>
+            <input
+              type="text"
+              class="form-control"
+              (keydown.enter)="$event.preventDefault()"
+              placeholder="{{ 'SearchNearestLocation' | localize }}"
+              [(ngModel)]="pickupAddress"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="off"
+              type="text"
+              #pickupsearch
+            />
+          </div>
+
+          <agm-map
+            (mapClick)="pickupplaceMarker($event)"
+            [latitude]="pickuplatitude"
+            [longitude]="pickuplongitude"
+            [zoom]="zoom"
+          >
+            <agm-marker
+              [latitude]="pickuplatitude"
+              [longitude]="pickuplongitude"
+              [markerClickable]="true"
+              [markerDraggable]="true"
+              (dragEnd)="pickupmarkerDragEnd($event)"
+              (markerClick)="pickupmarkerDragEnd($event)"
+            >
+            </agm-marker>
+          </agm-map>
+          <img
+            src="assets/image/mylocation.png"
+            style="width: 36px;"
+            (click)="pickupsetCurrentLocation()"
+          />
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          mdbBtn
+          color="unique"
+          class="waves-light"
+          (click)="pickupFram.hide(); setpickupAddress()"
+          mdbWavesEffect
+        >
+          {{ "OK" | localize }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ -->
+
+
+
+
+
+
+<div
+bsModal
+  #destinationFram="bs-modal"
+  class="modal fade left"
+  id="frameModalTop"
+  tabindex="-1"
+  userType="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+  style="overflow: auto;
+  "
+>
+  <div class="modal-dialog" userType="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4
+          class="modal-title w-100 font-weight-bold"
+          style="text-align: left;"
+        >
+          {{
+            "Chooselocation" | localize
+          }}
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="destinationFram.hide()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body mx-3">
+        <div class="col-md-12">
+          <!-- <div class="form-group">
+            <label></label>
+            <input
+              type="text"
+              class="form-control"
+              (keydown.enter)="$event.preventDefault()"
+              placeholder="{{ 'SearchNearestLocation' | localize }}"
+              [(ngModel)]="destinationAddress"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="off"
+              type="text"
+              #destinationsearch
+            />
+          </div> -->
+
+          <agm-map
+            (mapClick)="destinationplaceMarker($event)"
+            [latitude]="destinationlatitude"
+            [longitude]="destinationlongitude"
+            [zoom]="zoom"
+          >
+            <agm-marker
+              [latitude]="destinationlatitude"
+              [longitude]="destinationlongitude"
+              [markerClickable]="true"
+              [markerDraggable]="true"
+              (dragEnd)="destinationmarkerDragEnd($event)"
+              (markerClick)="destinationmarkerDragEnd($event)"
+            >
+            </agm-marker>
+          </agm-map>
+
+          <img
+            src="assets/images/mylocation.png"
+            style="width: 36px;"
+            (click)="destinationsetCurrentLocation()"
+          />
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <!-- <button
+          mdbBtn
+          color="unique"
+          class="waves-light"
+          (click)="destinationFram.hide(); setdestinationAddress()"
+          mdbWavesEffect
+        >
+          {{ "OK" | localize }}
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>

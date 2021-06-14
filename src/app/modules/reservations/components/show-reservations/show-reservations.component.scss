@@ -1,0 +1,32 @@
+.badge{
+    color: white;
+    padding: 5px 10px;
+    padding-bottom: 7px;
+}
+
+.current{
+    background-color: #17ca17;
+}
+.tabular{
+    background-color: orange;
+}
+.previous{
+    background-color: gray;
+}
+.canceled{
+    background-color: red;
+}
+.followOrder{
+    margin-bottom: 5px;
+    a{
+        text-decoration: none;
+        color: white;
+        background-color: #ee6c4d;
+        padding: 5px 3px;
+        border-radius: 4px;
+        margin: auto;
+        position: relative;
+        top: 2px;
+        right: 15%;
+    }
+}

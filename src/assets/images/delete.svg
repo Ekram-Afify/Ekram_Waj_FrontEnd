@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Icon_outlined</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11.7666667,8.725 L10,10.4916667 L8.225,8.725 L7.05,9.9 L8.825,11.6666667 L7.05833333,13.4333333 L8.23333333,14.6083333 L10,12.8416667 L11.7666667,14.6083333 L12.9416667,13.4333333 L11.175,11.6666667 L12.9416667,9.9 L11.7666667,8.725 Z M12.9166667,3.33333333 L12.0833333,2.5 L7.91666667,2.5 L7.08333333,3.33333333 L4.16666667,3.33333333 L4.16666667,5 L15.8333333,5 L15.8333333,3.33333333 L12.9166667,3.33333333 Z M5,15.8333333 C5,16.75 5.75,17.5 6.66666667,17.5 L13.3333333,17.5 C14.25,17.5 15,16.75 15,15.8333333 L15,5.83333333 L5,5.83333333 L5,15.8333333 Z M6.66666667,7.5 L13.3333333,7.5 L13.3333333,15.8333333 L6.66666667,15.8333333 L6.66666667,7.5 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="[AD]-Researchs-List" transform="translate(-94.000000, -561.000000)">
+            <g id="Body" transform="translate(70.000000, 92.000000)">
+                <g id="Research-List" transform="translate(0.000000, 52.000000)">
+                    <g id="Body" transform="translate(0.000000, 122.000000)">
+                        <g id="Table" transform="translate(0.000000, 121.000000)">
+                            <g id="Rows" transform="translate(0.000000, 54.000000)">
+                                <g id="3" transform="translate(0.000000, 104.000000)">
+                                    <g id="Table/Buttons" transform="translate(16.000000, 8.000000)">
+                                        <g id="Table/Buttons/Delete">
+                                            <g id="Icon" transform="translate(8.000000, 8.000000)">
+                                                <mask id="mask-2" fill="white">
+                                                    <use xlink:href="#path-1"></use>
+                                                </mask>
+                                                <g id="icon/action/delete_forever_24px" fill-rule="nonzero"></g>
+                                                <g id="✱-/-Color-/-Icons-/-Error" mask="url(#mask-2)" fill="#FF0C3E">
+                                                    <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,191 @@
+<div class="container-dashboard container-customize-admin">
+  <div class="title-page">
+    <h2 class="color-Jade">
+      {{ "Trackings" | localize }}
+    </h2>
+  </div>
+  <!-- <div class="header-admin-body">
+          <div class="breadcrumb">
+              <p-breadcrumb [model]="items"></p-breadcrumb>
+          </div>
+      </div> -->
+  <div class="body-dashboard">
+    <div class="row row-newReaserch">
+      <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+        <div class="body-section-dashboard-right">
+          <div class="container-cards-design-1 pt-0">
+            <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+              <li class="list-cards-design-1 card-green">
+                <div class="list-inside">
+                  <div class="body-cards-design-1">
+                    <div class="container-Add-New-Research-Step pt-0 pr-0">
+                      <div class="inside-Add-New-Research-Step">
+                        <form
+                          [formGroup]="orderForm"
+                          (ngSubmit)="submitSearch()"
+                        >
+                          <div
+                            class="container-form-field container-form-fields-section-uploadFile"
+                          >
+                            <div class="mb-5 d-flex">
+                              <div class="container-fields col">
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "ReservatiobId" | localize }}
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="RequestId"
+                                                name="RequestId"
+                                                class="float-input floatInput1"
+                                                #title
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "ReservatiobId" | localize }}
+                                              </label>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Plate" | localize
+                                      }}
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="Plate"
+                                                name="Plate"
+                                                class="float-input floatInput1"
+                                                #title
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "Plate" | localize }}
+                                              </label>
+
+                                            </span>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                                <div
+                                class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                              >
+                                <div class="section-inside">
+                                  <div
+                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                  >
+                                    {{ "DriverId" | localize
+                                    }}
+                                  </div>
+                                  <div
+                                    class="col container-Engine-information"
+                                  >
+                                    <div class="row">
+                                      <div
+                                        class="col-12 list-Engine-information"
+                                      >
+                                        <div class="section-form-field">
+                                          <span
+                                            class="section-dropdown d-block position-relative"
+                                          >
+                                            <p-dropdown
+                                              formControlName="DriverId"
+                                              name="DriverId"
+                                              [ngClass]="{
+                                                'dropdown-error': false
+                                              }"
+                                              [options]="drivers"
+                                              class="dropdown-customize w-100"
+                                              optionLabel="label"
+                                              optionValue="value"
+                                              filter="true"
+                                            >
+                                            </p-dropdown>
+                                          </span>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> -->
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            type="submit"
+                            class="btn border-gray mr-2 color-white background-color-Jade button-design filterFollow"
+                          >
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="map">
+    <agm-map [latitude]="latitude" [longitude]="longitude">
+      <agm-direction
+        [origin]="origin"
+        [waypoints]="waypoints"
+        [renderOptions]="renderOptions"
+        [markerOptions]="markerOptions"
+        [destination]="destination"
+      >
+      </agm-direction>
+    </agm-map>
+  </div>
+</div>

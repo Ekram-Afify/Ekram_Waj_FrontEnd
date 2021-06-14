@@ -1,0 +1,272 @@
+<div class="container-dashboard container-customize-admin">
+  <div class="title-page">
+    <h2 *ngIf="this._id > 0" class="color-Jade">
+      {{ "UpdateCoupon" | localize }}
+    </h2>
+    <h2 *ngIf="!(this._id > 0)" class="color-Jade">
+      {{ "AddCoupon" | localize }}
+    </h2>
+  </div>
+  <!-- <div class="header-admin-body">
+        <div class="breadcrumb">
+            <p-breadcrumb [model]="items"></p-breadcrumb>
+        </div>
+    </div> -->
+  <div class="body-dashboard">
+    <div class="row row-newReaserch">
+      <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+        <div class="body-section-dashboard-right">
+          <div class="container-cards-design-1 pt-0">
+            <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+              <li class="list-cards-design-1 card-green">
+                <div class="list-inside">
+                  <div class="body-cards-design-1">
+                    <div class="container-Add-New-Research-Step pt-0 pr-0">
+                      <div class="inside-Add-New-Research-Step">
+                        <form
+                          [formGroup]="CouponForm"
+                          (ngSubmit)="submitCoupon()"
+                        >
+                          <div class="section-fields-is-required color-Jade">
+                            {{
+                              "Fieldsmarkedwithasteriskaremandatory" | localize
+                            }}
+                          </div>
+                          <div
+                            class="container-form-field container-form-fields-section-uploadFile"
+                          >
+                            <div
+                              class="container-fileUpload-with-fields mb-5 d-flex"
+                            >
+                              <div class="container-fields col">
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Code" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="code"
+                                                name="code"
+                                                class="float-input floatInput1"
+                                                #code
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "Code" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="code?.value?.length"
+                                                (click)="clearInput('code')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                CouponForm.get('code').errors &&
+                                                CouponForm.get('code').errors
+                                                  .required &&
+                                                (CouponForm.get('code')
+                                                  .touched ||
+                                                  isSubmitted)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "CouponType" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="section-dropdown d-block position-relative"
+                                            >
+                                              <p-dropdown
+                                                formControlName="couponType"
+                                                name="couponType"
+                                                [ngClass]="{
+                                                  'dropdown-error': false
+                                                }"
+                                                [options]="option"
+                                                (onChange)="onChange($event)"
+                                                class="dropdown-customize w-100"
+                                                optionLabel="label"
+                                                optionValue="value"
+                                              >
+                                              </p-dropdown>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                CouponForm.get('couponType')
+                                                  .errors &&
+                                                CouponForm.get('couponType')
+                                                  .errors.required &&
+                                                (CouponForm.get('couponType')
+                                                  .touched ||
+                                                  isSubmitted)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Discount" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="value"
+                                                name="couponValue"
+                                                class="float-input floatInput1"
+                                                #value
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "Discount" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="value?.value?.length"
+                                                (click)="clearInput('value')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                CouponForm.get('value')
+                                                  .errors &&
+                                                CouponForm.get('value').errors
+                                                  .required &&
+                                                (CouponForm.get('value')
+                                                  .touched ||
+                                                  isSubmitted)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="checkActive">
+                                  <div class="checkbox-wrapper">
+                                    <mat-checkbox
+                                      name="active"
+                                      formControlName="active"
+                                    >
+                                      {{ "IsActive" | localize }}
+                                    </mat-checkbox>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="button-directions">
+                            <button
+                              class="btn border-gray ml-2 color-Jade button-design button-cancel-step-form"
+                              (click)="cancel()"
+                            >
+                              {{ "Cancel" | localize }}
+                            </button>
+                            <button
+                              type="submit"
+                              class="btn border-gray mr-2 color-white background-color-Jade button-design"
+                            >
+                              {{ "Send" | localize }}
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

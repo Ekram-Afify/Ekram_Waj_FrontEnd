@@ -1,0 +1,260 @@
+<div class="asidebar-background"></div>
+<div class="asidebar-admin background-color-Jade">
+  <div class="inside-asidebar" id="style-1">
+    <ul class="list-unstyled p-0 m-0">
+      <li class="list-asidebarnav-item dropdown list-asidebarnav-logo">
+        <div class="logo-asidebar-English-Dar">
+          <img src="./assets/images/logo.png" alt="en" />
+        </div>
+      </li>
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/PanelUsers']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">admin_panel_settings</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "PanelUsers" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.ClientCompany')"
+      >
+        <a [routerLink]="['/app/customers']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">group</i>
+            </div>
+            <span class="span-list-asidebar">{{ "Customers" | localize }}</span>
+          </div>
+        </a>
+      </li>
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.ClientCompany')"
+      >
+        <a [routerLink]="['/app/drivers']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">group</i>
+            </div>
+            <span class="span-list-asidebar">{{ "Drivers" | localize }}</span>
+          </div>
+        </a>
+      </li>
+
+      <!-- <li class="list-asidebarnav-item li-dropdown" routerLinkActive="active" *ngIf="showMenuItem('Pages.Users')">
+        <a [routerLink]="['/app/companyClients']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">group</i>
+            </div>
+            <span class="span-list-asidebar">{{ "CompanyClients" | localize }}</span>
+          </div>
+        </a>
+      </li> -->
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/companies']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">commute</i>
+            </div>
+            <span class="span-list-asidebar">{{ "Companies" | localize }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.ClientCompany')"
+      >
+        <a [routerLink]="['/app/reservations']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">description</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "Resrveations" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/orders/followorders']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">location_searching</i>
+            </div>
+            <span class="span-list-asidebar">
+              {{ "Trackings" | localize }}
+            </span>
+          </div>
+        </a>
+      </li>
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/coupons']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">local_offer</i>
+            </div>
+            <span class="span-list-asidebar">{{ "Coupons" | localize }}</span>
+          </div>
+        </a>
+      </li>
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/categories']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">settings</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "categories" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/subcategories']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">settings</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "SubCategories" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/vechiles']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">commute</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "waselVechiles" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/waselDrivers']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">commute</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "waselDrivers" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/chat']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">message</i>
+            </div>
+            <span class="span-list-asidebar">{{ "Chat" | localize }}</span>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/users']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">settings</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "usersAndRoles" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.ClientCompany')"
+      >
+        <a [routerLink]="['/app/reports']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">description</i>
+            </div>
+            <span class="span-list-asidebar">{{ "Reports" | localize }}</span>
+          </div>
+        </a>
+      </li>
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.Users')"
+      >
+        <a [routerLink]="['/app/notifications']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">notifications_active</i>
+            </div>
+            <span class="span-list-asidebar">{{
+              "SystemNotification" | localize
+            }}</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,616 @@
+<div class="container-dashboard container-customize-admin">
+  <div class="title-page">
+    <h2 *ngIf="_id == undefined" class="color-Jade">
+      {{ "AddPanelUser" | localize }}
+    </h2>
+    <h2 *ngIf="_id > 0" class="color-Jade">
+      {{ "UpdatePanelUser" | localize }}
+    </h2>
+  </div>
+  <div class="header-admin-body">
+    <div class="breadcrumb">
+      <p-breadcrumb [model]="items"></p-breadcrumb>
+    </div>
+  </div>
+  <div class="body-dashboard">
+    <div class="row row-newReaserch">
+      <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+        <div class="body-section-dashboard-right">
+          <div class="container-cards-design-1 pt-0">
+            <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+              <li class="list-cards-design-1 card-green">
+                <div class="list-inside">
+                  <div class="body-cards-design-1">
+                    <div class="container-Add-New-Research-Step pt-0 pr-0">
+                      <div class="inside-Add-New-Research-Step">
+                        <form
+                          novalidate
+                          #firstForm="ngForm"
+                          [formGroup]="firstFormGroup"
+                          (ngSubmit)="onFirstFromSubmit()"
+                        >
+                          <div class="section-fields-is-required color-Jade">
+                            {{
+                              "Fieldsmarkedwithasteriskaremandatory" | localize
+                            }}
+                          </div>
+                          <div
+                            class="container-form-field container-form-fields-section-uploadFile"
+                          >
+                            <div
+                              class="container-fileUpload-with-fields mb-5 d-flex"
+                            >
+                              <div class="container-fields col">
+                                <!-- role -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Role" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="section-dropdown d-block position-relative"
+                                            >
+                                              <p-dropdown
+                                                formControlName="roleNames"
+                                                name="roleNames"
+                                                [ngClass]="{
+                                                  'dropdown-error': false
+                                                }"
+                                                [options]="Roles"
+                                                class="dropdown-customize w-100"
+                                                optionLabel="label"
+                                              >
+                                              </p-dropdown>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('roleNames')
+                                                  .errors &&
+                                                firstFormGroup.get('roleNames')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('roleNames')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- username -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "UserName" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="username"
+                                                name="username"
+                                                class="float-input floatInput1"
+                                                #UserName
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "UserName" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="UserName?.value?.length"
+                                                (click)="clearInput('username')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('username')
+                                                  .errors &&
+                                                firstFormGroup.get('username')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('username')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- email -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "email" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="email"
+                                                name="email"
+                                                class="float-input floatInput1"
+                                                #Email
+                                                type="email"
+                                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "email" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="Email?.value?.length"
+                                                (click)="clearInput('email')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('email')
+                                                  .errors &&
+                                                firstFormGroup.get('email')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('email')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('email')
+                                                  .errors &&
+                                                firstFormGroup.get('email')
+                                                  .errors.pattern &&
+                                                (firstFormGroup.get('email')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{ "NotValidEmail" | localize }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- companyId -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Company" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="section-dropdown d-block position-relative"
+                                            >
+                                              <p-dropdown
+                                                formControlName="companyId"
+                                                name="companyId"
+                                                [ngClass]="{
+                                                  'dropdown-error': false
+                                                }"
+                                                [options]="companies"
+                                                class="dropdown-customize w-100"
+                                                optionLabel="label"
+                                              >
+                                              </p-dropdown>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('companyId')
+                                                  .errors &&
+                                                firstFormGroup.get('companyId')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('companyId')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- firstName -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "firstName" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="firstName"
+                                                name="firstName"
+                                                class="float-input floatInput1"
+                                                #firstName
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "firstName" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="firstName?.value?.length"
+                                                (click)="
+                                                  clearInput('firstName')
+                                                "
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('firstName')
+                                                  .errors &&
+                                                firstFormGroup.get('firstName')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('firstName')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- lastName -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "lastName" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="lastName"
+                                                name="lastName"
+                                                class="float-input floatInput1"
+                                                #lastName
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "lastName" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="lastName?.value?.length"
+                                                (click)="clearInput('lastName')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('lastName')
+                                                  .errors &&
+                                                firstFormGroup.get('lastName')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('lastName')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- phone -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "phone" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="phone"
+                                                name="firstName"
+                                                class="float-input floatInput1"
+                                                #phone
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "phone" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="phone?.value?.length"
+                                                (click)="clearInput('phone')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('phone')
+                                                  .errors &&
+                                                firstFormGroup.get('phone')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('phone')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- password -->
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Password" | localize
+                                      }}<span class="red">*</span>
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="password"
+                                                type="password"
+                                                name="username"
+                                                class="float-input floatInput1"
+                                                #title
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <label for="float-input">
+                                                {{ "Password" | localize }}
+                                              </label>
+                                              <div
+                                                class="close-icon icon-left"
+                                                *ngIf="title?.value?.length"
+                                                (click)="clearInput('password')"
+                                              >
+                                                <i
+                                                  class="material-icons-outlined"
+                                                  >close</i
+                                                >
+                                              </div>
+                                            </span>
+                                            <p
+                                              *ngIf="
+                                                firstFormGroup.get('password')
+                                                  .errors &&
+                                                firstFormGroup.get('password')
+                                                  .errors.required &&
+                                                (firstFormGroup.get('password')
+                                                  .touched ||
+                                                  firstFormSaving)
+                                              "
+                                              class="pragraphe-bottom-field text-right message-error col-12 m-0"
+                                            >
+                                              {{
+                                                "ThisFieldRequired" | localize
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- isActive -->
+                                <div class="checkActive">
+                                  <div class="checkbox-wrapper">
+                                    <mat-checkbox
+                                      name="isActive"
+                                      formControlName="isActive"
+                                    >
+                                      {{ "IsActive" | localize }}
+                                    </mat-checkbox>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="button-directions">
+                            <button
+                              class="btn border-gray ml-2 color-Jade button-design button-cancel-step-form"
+                              (click)="cancel()"
+                            >
+                              {{ "Cancel" | localize }}
+                            </button>
+                            <button
+                              type="submit"
+                              class="btn border-gray mr-2 color-white background-color-Jade button-design"
+                            >
+                              {{ "Send" | localize }}
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

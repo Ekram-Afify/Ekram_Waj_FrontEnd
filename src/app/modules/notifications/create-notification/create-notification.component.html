@@ -1,0 +1,224 @@
+<div class="container-dashboard container-customize-admin">
+  <div class="title-page">
+    <h2 class="color-Jade">
+      {{ "SystemNotification" | localize }}
+    </h2>
+  </div>
+  <!-- <div class="header-admin-body">
+          <div class="breadcrumb">
+              <p-breadcrumb [model]="items"></p-breadcrumb>
+          </div>
+      </div> -->
+  <div class="body-dashboard">
+    <div class="row row-newReaserch">
+      <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+        <div class="body-section-dashboard-right">
+          <div class="container-cards-design-1 pt-0">
+            <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+              <li class="list-cards-design-1 card-green">
+                <div class="list-inside">
+                  <div class="body-cards-design-1">
+                    <div class="container-Add-New-Research-Step pt-0 pr-0">
+                      <div class="inside-Add-New-Research-Step">
+                        <form
+                          [formGroup]="NotificationForm"
+                          (ngSubmit)="submitNotification()"
+                        >
+                          <div
+                            class="container-form-field container-form-fields-section-uploadFile"
+                          >
+                            <div class="mb-5 d-flex">
+                              <div class="container-fields col">
+                                <!--
+                                  <div
+                                    class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                  >
+                                    <div class="section-inside">
+                                      <div
+                                        class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                      >
+                                        {{ "RequestId" | localize
+                                        }}
+                                      </div>
+                                      <div
+                                        class="col container-Engine-information"
+                                      >
+                                        <div class="row">
+                                          <div
+                                            class="col-12 list-Engine-information"
+                                          >
+                                            <div class="section-form-field">
+                                              <span
+                                                class="ui-float-label section-clear-input design-float-input"
+                                              >
+                                                <input
+                                                  formControlName="RequestId"
+                                                  name="RequestId"
+                                                  class="float-input floatInput1"
+                                                  #title
+                                                  type="text"
+                                                  required
+                                                  size="30"
+                                                  pInputText
+                                                />
+                                                <label for="float-input">
+                                                  {{ "RequestId" | localize }}
+                                                </label>
+
+                                              </span>
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div> -->
+
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "title" | localize }}
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="ui-float-label section-clear-input design-float-input"
+                                            >
+                                              <input
+                                                formControlName="title"
+                                                name="title"
+                                                class="float-input floatInput1"
+                                                #title
+                                                type="text"
+                                                size="30"
+                                                pInputText
+                                              />
+                                              <!-- <label
+                                                for="float-input">
+                                                {{ 'title' |localize }}
+                                            </label> -->
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "Customers" | localize }}
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <span
+                                              class="section-dropdown d-block position-relative"
+                                            >
+                                              <p-multiSelect
+                                                formControlName="clientIds"
+                                                name="clientIds"
+                                                required
+                                                [defaultLabel]="label"
+                                                [ngClass]="{
+                                                  'dropdown-error': false
+                                                }"
+                                                [options]="customers"
+                                                optionLabel="label"
+                                                optionValue="value"
+                                                filter="true"
+                                                styleClass="multiselect-mobileregulation-width"
+                                              >
+                                              </p-multiSelect>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                                >
+                                  <div class="section-inside">
+                                    <div
+                                      class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
+                                    >
+                                      {{ "NotificationContent" | localize }}
+                                    </div>
+                                    <div
+                                      class="col container-Engine-information"
+                                    >
+                                      <div class="row">
+                                        <div
+                                          class="col-12 list-Engine-information"
+                                        >
+                                          <div class="section-form-field">
+                                            <textarea
+                                              class="float-input floatInput2"
+                                              formControlName="message"
+                                              required
+                                              autoResize="autoResize"
+                                              rows="5"
+                                              #fieldTextarea2
+                                              pInputTextarea
+                                            ></textarea>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="button-directions">
+                              <button
+                                type="submit"
+                                [disabled]="NotificationForm.invalid"
+                                class="btn border-gray mr-2 color-white background-color-Jade button-design"
+                              >
+                                {{ "Send" | localize }}
+                              </button>
+                            </div>
+                          </div>
+                          <!-- <button
+
+                                type="submit"
+                                class="btn border-gray mr-2 color-white background-color-Jade button-design filterFollow"
+                              >
+                              <i class="fa fa-search" aria-hidden="true"></i>
+
+                              </button> -->
+                        </form>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="container-dashboard container-customize-admin">
+    <div class="title-page">
+        <h2 class="color-Jade">{{ 'TopDrivers' |localize }}</h2>
+    </div>
+    <table class="table table-striped">
+        <thead class="background-color-Jade color-white">
+          <tr>
+            <th scope="col">{{ 'Name' |localize }}</th>
+            <th scope="col">{{ 'phone' |localize }}</th>
+            <th scope="col">{{ 'EmailAddress' |localize }}</th>
+            <th scope="col">{{ 'requestsCount' |localize }}</th>
+            <th></th>
+          </tr>
+          <tr style="background-color: #fff;">
+            <th>
+              <input class="mytable-filter i-filter" type="text" name="name">
+            </th>
+            <th>
+              <input class="mytable-filter i-filter" type="text" name="phone">
+            </th>
+            <th>
+              <input class="mytable-filter i-filter" type="text" name="email">
+            </th>
+            <th>
+              <!-- <input class="mytable-filter i-filter" type="text" placeholder="{{ 'search' |localize }}"> -->
+            </th>
+            <th>
+              <div class="section-button-tr">
+                <div class="button-Implementation-table d-inline-block">
+                    <button (click)="applyFilters(1)"
+                        class="btn background-color-Jade color-white">
+                        <i class="material-icons-outlined">
+                            search
+                        </i>
+                    </button>
+                </div>
+                <div class="button-Reset-table d-inline-block">
+                    <button (click)="resetFilters(1)" class="btn color-Jade border-gray-1">
+                      <i class="material-icons-outlined">
+                          cached
+                      </i>
+                    </button>
+                </div>
+
+            </div>
+            </th>
+          </tr>
+          
+        </thead>
+        <tbody>
+          <tr *ngFor="let topDriver of topDrivers">
+            <th scope="row">{{topDriver.driverName}}</th>
+            <td>{{topDriver.phone}}</td>
+            <td>{{topDriver.email}}</td>
+            <td>{{topDriver.requestsCount}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+</div>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon/file/download_24px_outlined</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.8333333,7.91666667 L12.5,7.91666667 L12.5,2.91666667 L7.5,2.91666667 L7.5,7.91666667 L4.16666667,7.91666667 L10,13.75 L15.8333333,7.91666667 Z M9.16666667,9.58333333 L9.16666667,4.58333333 L10.8333333,4.58333333 L10.8333333,9.58333333 L11.8083333,9.58333333 L10,11.3916667 L8.19166667,9.58333333 L9.16666667,9.58333333 Z M4.16666667,15.4166667 L15.8333333,15.4166667 L15.8333333,17.0833333 L4.16666667,17.0833333 L4.16666667,15.4166667 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="[AD]-Researchs-List" transform="translate(-138.000000, -457.000000)">
+            <g id="Body" transform="translate(70.000000, 92.000000)">
+                <g id="Research-List" transform="translate(0.000000, 52.000000)">
+                    <g id="Body" transform="translate(0.000000, 122.000000)">
+                        <g id="Table" transform="translate(0.000000, 121.000000)">
+                            <g id="Rows" transform="translate(0.000000, 54.000000)">
+                                <g id="1">
+                                    <g id="Table/Buttons" transform="translate(16.000000, 8.000000)">
+                                        <g id="Table/Buttons/Edit" transform="translate(44.000000, 0.000000)">
+                                            <g id="icon/file/download_24px" transform="translate(8.000000, 8.000000)">
+                                                <mask id="mask-2" fill="white">
+                                                    <use xlink:href="#path-1"></use>
+                                                </mask>
+                                                <g fill-rule="nonzero"></g>
+                                                <g id="✱-/-Color-/-Primary-/-Main" mask="url(#mask-2)" fill="#02A887">
+                                                    <g id="↳-Tonal-Palette">
+                                                        <rect id="Rectangle-13" x="0" y="0" width="20" height="20"></rect>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

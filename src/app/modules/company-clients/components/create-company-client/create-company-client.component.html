@@ -1,0 +1,228 @@
+<div class="container-dashboard container-customize-admin">
+    <div class="title-page">
+        <h2 class="color-Jade">{{ 'AddCompanyClient' | localize }}</h2>
+    </div>
+    <div class="header-admin-body">
+        <div class="breadcrumb">
+            <p-breadcrumb [model]="items"></p-breadcrumb>
+        </div>
+    </div>
+    <div class="body-dashboard">
+        <div class="row row-newReaserch">
+            <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+                <div class="body-section-dashboard-right">
+                    <div class="container-cards-design-1 pt-0">
+                        <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+                            <li class="list-cards-design-1 card-green">
+                                <div class="list-inside">
+
+                                    <div class="body-cards-design-1">
+                                        <div class="container-Add-New-Research-Step pt-0 pr-0">
+                                            <div class="inside-Add-New-Research-Step">
+                                                
+                                              
+                                                        <form #firstForm="ngForm" [formGroup]="firstFormGroup" (ngSubmit)="onFirstFromSubmit()">
+                                                           
+                                                            
+                                                            <div class="section-fields-is-required color-Jade">
+                                                                {{ 'Fieldsmarkedwithasteriskaremandatory' |localize }}
+                                                            </div>
+                                                            <div
+                                                                class="container-form-field container-form-fields-section-uploadFile">
+                                                                <div
+                                                                    class="container-fileUpload-with-fields mb-5 d-flex">
+                                                                    <div class="container-fields col">
+                                                                       
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'fullName' |localize }}*
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                        formControlName="fullName"
+                                                                                                        name="fullName"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                    <label
+                                                                                                        for="float-input">
+                                                                                                        {{ 'fullName' |localize }}    
+                                                                                                    </label>
+                                                                                                    
+                                                                                                </span>
+                                                                                                <p *ngIf="(firstFormGroup.get('fullName').errors && firstFormGroup.get('fullName').errors.required ) && (firstFormGroup.get('fullName').touched || firstFormSaving)"
+                                                                                                    class="pragraphe-bottom-field text-right message-error col-12 m-0">
+                                                                                                    {{ 'ThisFieldRequired' |localize }}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'phone' |localize }}*
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                        formControlName="phone"
+                                                                                                        name="phone"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="number"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                    <label
+                                                                                                        for="float-input">
+                                                                                                        {{ 'phone' |localize }}    
+                                                                                                    </label>
+                                                                                                    
+                                                                                                </span>
+                                                                                                <p *ngIf="(firstFormGroup.get('phone').errors && firstFormGroup.get('phone').errors.required ) && (firstFormGroup.get('phone').touched || firstFormSaving)"
+                                                                                                    class="pragraphe-bottom-field text-right message-error col-12 m-0">
+                                                                                                    {{ 'ThisFieldRequired' |localize }}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div
+                                                                        class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                        <div class="section-inside">
+                                                                            <div
+                                                                                class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                {{ 'email' |localize }}*
+                                                                            </div>
+                                                                            <div
+                                                                                class="col container-Engine-information">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                        class="col-12 list-Engine-information">
+                                                                                        <div
+                                                                                            class="section-form-field">
+                                                                                            <span
+                                                                                                class="ui-float-label section-clear-input design-float-input">
+                                                                                                <input
+                                                                                                    formControlName="email"
+                                                                                                    name="email"
+                                                                                                    class="float-input floatInput1"
+                                                                                                    #title
+                                                                                                    type="text"
+                                                                                                    size="30"
+                                                                                                    pInputText>
+                                                                                                <label
+                                                                                                    for="float-input">
+                                                                                                    {{ 'email' |localize }}    
+                                                                                                </label>
+                                                                                                
+                                                                                            </span>
+                                                                                            <p *ngIf="(firstFormGroup.get('email').errors && firstFormGroup.get('email').errors.required ) && (firstFormGroup.get('email').touched || firstFormSaving)"
+                                                                                                class="pragraphe-bottom-field text-right message-error col-12 m-0">
+                                                                                                {{ 'ThisFieldRequired' |localize }}
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'Company' |localize }}*
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="section-dropdown d-block position-relative">
+                                                                                                    <p-dropdown
+                                                                                                        formControlName="companyId"
+                                                                                                        name="governorateId"
+                                                                                                        [ngClass]="{'dropdown-error': false}"
+                                                                                                        [options]="categories"
+                                                                                                        class="dropdown-customize w-100"
+                                                                                                        optionLabel="label">
+                                                                                                    </p-dropdown>
+                                                                                                </span>
+                                                                                                <p *ngIf="(firstFormGroup.get('companyId').errors && firstFormGroup.get('companyId').errors.required ) && (firstFormGroup.get('companyId').touched || firstFormSaving)"
+                                                                                                    class="pragraphe-bottom-field text-right message-error col-12 m-0">
+                                                                                                    {{ 'ThisFieldRequired' |localize }}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                       
+
+                                                                    
+
+
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn button-send-modal-Researchs color-Jade"
+                                                                    (click)="Supportingfiles.hide()">{{ 'Cancel' |localize }}</button>
+                                                                <button class="btn button-send-modal-Researchs color-Jade" (click)="AddSupportingfiles()">{{ 'Add' |localize }}</button>
+                                                            </div>
+                                                        </form>
+                                                   
+                                            </div>
+                                          
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

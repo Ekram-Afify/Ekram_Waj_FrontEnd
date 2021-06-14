@@ -1,0 +1,203 @@
+<div class="container-dashboard container-customize-admin">
+    <div class="title-page">
+        <h2 class="color-Jade">{{ 'CompanyDetails' |localize }}</h2>
+    </div>
+    <div class="header-admin-body">
+        <div class="breadcrumb">
+            <p-breadcrumb [model]="items"></p-breadcrumb>
+        </div>
+    </div>
+    <div class="body-dashboard">
+        <div class="row row-newReaserch">
+            <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+                <div class="body-section-dashboard-right">
+                    <div class="container-cards-design-1 pt-0">
+                        <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+                            <li class="list-cards-design-1 card-green">
+                                <div class="list-inside">
+  
+                                    <div class="body-cards-design-1">
+                                        <div class="container-Add-New-Research-Step pt-0 pr-0">
+                                            <div class="inside-Add-New-Research-Step">
+                                                
+                                              
+                                                        <form #firstForm="ngForm">
+                                                           
+                                                            
+                                                            <div
+                                                                class="container-form-field container-form-fields-section-uploadFile">
+                                                                <div
+                                                                    class="container-fileUpload-with-fields mb-5 d-flex">
+                                                                    <div class="container-fields col">
+                                                                       
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'name' |localize }}
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                    disabled
+                                                                                                    value="{{company.name}}"
+                                                                                                        name="name"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type=""
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+  
+  
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'nameAr' |localize }}
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                    disabled
+                                                                                                    value="{{company.nameAr}}"
+                                                                                                        name="nameAr"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+  
+                                                                        <div
+                                                                        class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                        <div class="section-inside">
+                                                                            <div
+                                                                                class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                {{ 'description' |localize }}
+                                                                            </div>
+                                                                            <div
+                                                                                class="col container-Engine-information">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                        class="col-12 list-Engine-information">
+                                                                                        <div
+                                                                                            class="section-form-field">
+                                                                                            <span
+                                                                                                class="ui-float-label section-clear-input design-float-input">
+                                                                                                <input
+                                                                                                disabled
+                                                                                                    name="description"
+                                                                                                    value="{{company.description}}"
+                                                                                                    class="float-input floatInput1"
+                                                                                                    #title
+                                                                                                    type="text"
+                                                                                                    size="30"
+                                                                                                    pInputText>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                        <div
+                                                                            class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div
+                                                                                    class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'descriptionAr' |localize }}
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-12 list-Engine-information">
+                                                                                            <div
+                                                                                                class="section-form-field">
+                                                                                                <span
+                                                                                                    class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input
+                                                                                                    disabled
+                                                                                                    value="{{company.descriptionAr}}"
+                                                                                                        name="descriptionAr"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                    
+                                                                                                </span>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                       
+  
+  
+  
+  
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="button-directions">
+                                                                <!-- <button
+                                                                    class="btn border-gray ml-2 col color-Jade button-design button-cancel-step-form" (click)="cancel()">{{ 'Cancel' |localize }}</button> -->
+                                                                <button type="button" (click)="back()"
+                                                                    class="btn border-gray mr-2 color-white background-color-Jade button-design">{{ 'Back' |localize }}</button>
+                                                            </div>
+                                                        </form>
+                                                   
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </li>
+  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+  
+    </div>
+  </div>
+  
+  

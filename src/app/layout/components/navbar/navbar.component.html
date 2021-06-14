@@ -1,0 +1,69 @@
+<div id="tohideinchat" class="navbar container-customize-admin">
+  <div class="section-page-title text-right">
+    <div class="section-navigation-menu">
+      <span class="material-icons color-Jade">menu</span>
+    </div>
+    <div class="text-page-title">
+      <div class="description-page">
+        <h5 class="page-title m-0">{{ "Wajeeh" | localize }}</h5>
+        <p class="p-0 m-0 p-page">{{ "Dashboard" | localize }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="section-notification">
+    <ul class="list-unstyled ul-notification m-0 p-0">
+      <li class="list-localization dropdown">
+        <a
+          class="nav-link color-gray dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span>{{ currentLanguage.displayName }}</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div *ngFor="let language of languages">
+            <a
+              class="dropdown-item"
+              *ngIf="language.name != currentLanguage.name"
+              (click)="changeLanguage(language.name)"
+              >{{ language.displayName }}</a
+            >
+          </div>
+        </div>
+      </li>
+      <!-- <li class="list-notification pr-0">
+                <i class="material-icons">notifications</i>
+                <span class="number-notification">99</span>
+            </li> -->
+      <li class="list-localization dropdown">
+        <a
+          class="nav-link color-gray link-dropdown-admin dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <div class="section-inside-dropdown-admin">
+            <h6 class="m-0 p-0 title-dropdown-admin">{{ shownLoginName }}</h6>
+            <!-- <span class="sub-title-dropdown-admin d-block">مدير النظام</span> -->
+          </div>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/app/changePassword']">{{
+            "UpdatePassword" | localize
+          }}</a>
+
+          <a class="dropdown-item" (click)="logout()">{{
+            "Logout" | localize
+          }}</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container-dashboard container-customize-admin" id="demo">
+  <div class="my-container">
+    <header class="header section-lg">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bill-logo"></div>
+        </div>
+        <div class="col-md-9">
+          <h2>{{ "ReservatiobId" | localize }} :{{ reservation.id }}</h2>
+          <h5 class="date">{{ reservation.creationTime | date: "short" }}</h5>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <div class="main">
+      <div class="page-content">
+        <div class="data">
+          <div class="row">
+            <div class="col-md-2">
+              <label>{{ "customerName" | localize }} </label>
+            </div>
+            <div class="col-md-1">:</div>
+            <div class="col-md-9">
+              <div class="result">
+                {{ reservation.customerName }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label>{{ "reservationFrom" | localize }} </label>
+            </div>
+            <div class="col-md-1">:</div>
+            <div class="col-md-9">
+              <div class="result">
+                {{ reservation.stratingPointTitle }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label>{{ "reservationTo" | localize }}</label>
+            </div>
+            <div class="col-md-1">:</div>
+            <div class="col-md-9">
+              <div class="result">
+                {{ reservation.endingPointTitle }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label>{{ "notes" | localize }} </label>
+            </div>
+            <div class="col-md-1">:</div>
+            <div class="col-md-9">
+              <textarea disabled>
+                        {{ reservation.notes }}
+                    </textarea
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row sub">
+          <div class="col-md-4">
+            <div class="lines">
+              <p>{{ "DeliveryCost" | localize }}</p>
+              <p>{{ "ValueAdded" | localize }}</p>
+              <p class="red">{{ "total" | localize }}</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="subtotal">
+              <div class="result">
+                {{ reservation.deliveryCost || 0 }}
+              </div>
+              <div class="result">
+                {{ reservation.vatAmount || 0 }} ({{ reservation.vat || 0 }} %)
+              </div>
+              <div class="result">
+                {{ reservation.net }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End page-content -->
+    </div>
+    <!-- End Main -->
+  </div>
+</div>
+
+<button
+  printSectionId="demo"
+  [useExistingCss]="true"
+  ngxPrint
+  class="btn background-color-orange color-white my-printbtn"
+>
+  <span>{{ "print" | localize }}</span>
+</button>

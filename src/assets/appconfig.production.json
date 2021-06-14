@@ -1,0 +1,21 @@
+{
+  "remoteServiceBaseUrl": "https://wajeehapp.com/api2",
+  "appBaseUrl": "https://cpanel.wajeehapp.com",
+  "baseRoot": "https://cpanel.wajeehapp.com",
+
+
+  "localeMappings": [
+    {
+      "from": "pt-BR",
+      "to": "pt"
+    },
+    {
+      "from": "zh-CN",
+      "to": "zh"
+    },
+    {
+      "from": "he-IL",
+      "to": "he"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+<div class="container-dashboard container-customize-admin">
+    <div class="title-page">
+        <h2 class="color-Jade">{{ 'TopClients' |localize }}</h2>
+    </div>
+    <table class="table table-striped">
+        <thead class="background-color-Jade color-white">
+          <tr>
+            <th scope="col">{{ 'Name' |localize }}</th>
+            <!-- <th scope="col">{{ 'lastName' |localize }}</th> -->
+            <th scope="col">{{ 'email' |localize }}</th>
+            <th scope="col">{{ 'phone' |localize }}</th>
+            <th scope="col">{{ 'requestsCount' |localize }}</th>
+            <th></th>
+          </tr>
+          <tr style="background-color: #fff;">
+            <th>
+              <input class="mytable-filter i-filter" type="text" name="firstName">
+            </th>
+            <th>
+              <input class="mytable-filter i-filter" type="text" name="email">
+            </th>
+            <th>
+              <input class="mytable-filter i-filter" type="text" name="phone">
+            </th>
+            <th>
+              <!-- <input class="mytable-filter i-filter" type="text" name="count"> -->
+            </th>
+            <th>
+              <div class="section-button-tr">
+                <div class="button-Implementation-table d-inline-block">
+                    <button (click)="applyFilters(1)"
+                        class="btn background-color-Jade color-white">
+                        <i class="material-icons-outlined">
+                            search
+                        </i>
+                    </button>
+                </div>
+                <div class="button-Reset-table d-inline-block">
+                    <button (click)="resetFilters(1)" class="btn color-Jade border-gray-1">
+                      <i class="material-icons-outlined">
+                          cached
+                      </i>
+                    </button>
+                </div>
+
+            </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let topClient of topClients">
+            <td>{{topClient.firstName}}</td>
+            <!-- <td>{{topClient.lastName}}</td> -->
+            <td>{{topClient.email}}</td>
+            <td>{{topClient.phone}}</td>
+            <td>{{topClient.requestsCount}}</td>
+            <th></th>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>

@@ -1,0 +1,30 @@
+<!-- <div class="overlay"></div>
+
+<top-bar></top-bar>
+
+<section (window:resize)="onResize($event)">
+    <aside id="leftsidebar" class="sidebar">
+        <sidebar-user-area></sidebar-user-area>
+        <sidebar-nav></sidebar-nav>
+        <sidebar-footer></sidebar-footer>
+    </aside>
+
+    <right-sidebar></right-sidebar>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</section> -->
+<ngx-spinner></ngx-spinner>
+<app-asidebar></app-asidebar>
+<div class="container-admin-layout">
+    <div class="section-1">
+        <app-navbar></app-navbar>
+        <router-outlet></router-outlet>
+    </div>
+    <div class="container-footer">
+        <app-footer></app-footer>
+    </div>
+</div>

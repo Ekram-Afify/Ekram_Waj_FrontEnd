@@ -1,0 +1,138 @@
+﻿<section class="login-bk">
+  <div class="login-container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+        <div class="form-group main-title-form">
+          <div class="">
+            <div class="logo-form">
+              <img src="../../assets/images/logo.png" alt="" />
+            </div>
+            <div class="form-title">
+              <h1>{{ "LogIn" | localize }}</h1>
+              <h2 style="color: #9e9e9e">
+                {{ "PleaseEnterLoginInformation" | localize }}
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+        <form
+          class="form"
+          autocomplete="off"
+          [busy]="saving"
+          #loginForm="ngForm"
+          (ngSubmit)="login()"
+        >
+          <div class="form-group">
+            <div class="">
+              <span
+                class="ui-float-label section-clear-input design-float-input"
+              >
+                <input
+                  class="float-input floatInput1"
+                  pInputText
+                  type="text"
+                  size="30"
+                  name="loginService.authenticateModel.usernameOrEmailAddress"
+                  [(ngModel)]="
+                    loginService.authenticateModel.usernameOrEmailAddress
+                  "
+                  #userNameOrEmailControl="ngModel"
+                  autocomplete="off"
+                  required
+                  maxlength="255"
+                />
+                <label for="float-input">
+                  {{ "UserNameOrEmail" | localize }}
+                </label>
+                <div
+                  (click)="
+                    loginService.authenticateModel.usernameOrEmailAddress = undefined
+                  "
+                  class="close-icon icon-left"
+                >
+                  <i class="material-icons-outlined">close</i>
+                </div>
+              </span>
+              <p
+                class="pragraphe-bottom-field text-right message-error col-12 m-0"
+              ></p>
+            </div>
+          </div>
+          <div
+            *ngIf="
+              userNameOrEmailControl.dirty || userNameOrEmailControl.touched
+            "
+            class="text-danger"
+          >
+            <p *ngIf="userNameOrEmailControl.errors?.required">
+              {{ "ThisFieldIsRequired" | localize }}
+            </p>
+          </div>
+          <div class="form-group">
+            <div class="">
+              <span
+                class="ui-float-label section-clear-input design-float-input"
+              >
+                <input
+                  class="float-input floatInput1"
+                  pInputText
+                  type="password"
+                  name="loginService.authenticateModel.password"
+                  [(ngModel)]="loginService.authenticateModel.password"
+                  #passwordControl="ngModel"
+                  autocomplete="off"
+                  required
+                />
+                <label for="float-input">
+                  {{ "Password" | localize }}
+                </label>
+                <div
+                  (click)="loginService.authenticateModel.password = undefined"
+                  class="close-icon icon-left"
+                >
+                  <i class="material-icons-outlined">close</i>
+                </div>
+              </span>
+              <p
+                class="pragraphe-bottom-field text-right message-error col-12 m-0"
+              ></p>
+            </div>
+          </div>
+          <div
+            *ngIf="passwordControl.dirty || passwordControl.touched"
+            class="text-danger"
+          >
+            <p *ngIf="passwordControl.errors?.required">
+              {{ "ThisFieldIsRequired" | localize }}
+            </p>
+          </div>
+          <div class="form-group">
+            <div class="">
+              <button
+                type="submit"
+                [disabled]="!loginForm.valid"
+                class="btn my-btn"
+              >
+                دخول
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- <div class="">
+                            <a href="#" class="forgot-password text-center d-block"> نسيت كلمة المرور؟ </a>
+                        </div> -->
+            <div class="">
+              <span class="new-register text-center d-block"
+                >تطبيق وجية لخدمات التوصيل</span
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

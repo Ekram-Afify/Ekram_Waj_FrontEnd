@@ -1,0 +1,523 @@
+<div class="container-dashboard container-customize-admin">
+    <div class="title-page">
+        <h2 class="color-Jade">{{ 'DriverDetails' |localize }}</h2>
+    </div>
+    <div class="header-admin-body">
+        <div class="breadcrumb">
+            <p-breadcrumb [model]="items"></p-breadcrumb>
+        </div>
+    </div>
+    <div class="body-dashboard">
+        <div class="row row-newReaserch">
+            <div class="section-dashboard-right col-lg-12 col-sm-12 col-12">
+                <div class="body-section-dashboard-right">
+                    <div class="container-cards-design-1 pt-0">
+                        <ul class="list-unstyled p-0 mb-0 ul-cards-design-1">
+                            <li class="list-cards-design-1 card-green">
+                                <div class="list-inside">
+                                    <div class="body-cards-design-1">
+                                        <div class="container-Add-New-Research-Step pt-0 pr-0">
+                                            <div class="inside-Add-New-Research-Step">
+                                                <!-- mat-horizontal-stepper class="step-second-success" -->
+                                                <mat-horizontal-stepper #stepper [linear]="isLinear">
+                                                    <mat-step [stepControl]="firstFormGroup">
+                                                        <form #firstForm="ngForm">
+                                                            <ng-template matStepLabel>
+                                                                <div class="icon-matStepLabel">
+                                                                    <span class="default-icon-matStepLabel">
+                                                                        <i class="material-icons">
+                                                                            account_circle
+                                                                        </i>
+                                                                    </span>
+                                                                </div>
+                                                                <p class="m-0 paragraphe-matStepLabel">
+                                                                    {{ 'DriverData' |localize }}</p>
+                                                            </ng-template>
+                                                            <div class="section-fields-is-required color-Jade">
+                                                                {{ 'Fieldsmarkedwithasteriskaremandatory' |localize }}
+                                                            </div>
+                                                            <div class="container-form-field container-form-fields-section-uploadFile">
+                                                                <div class="container-fileUpload-with-fields mb-5 d-flex">
+                                                                    <div class="container-fields col">
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'DriverStatusActive' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col pl-0 container-slide-toggle custom-slide-toggle-Vehicles-Step">
+                                                                                    <mat-slide-toggle [checked]="driver.isDriverAvilable" name="IsDriverAvilable">
+                                                                                    </mat-slide-toggle>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'fullName' | localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input disabled
+                                                                                                        value="{{driver.fullName}}"
+                                                                                                        name="fullName"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'phone' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input disabled
+                                                                                                        value="{{driver.phone}}"
+                                                                                                        name="phone"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'email' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input disabled
+                                                                                                        value="{{driver.email}}"
+                                                                                                        name="email"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'VehicleSequenceNumber' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input disabled
+                                                                                                        value="{{driver.vehicleSequenceNumber}}"
+                                                                                                        name="vehicleSequenceNumber"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'DriverIdentityNumber' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input disabled
+                                                                                                        value="{{driver.driverIdentityNumber}}"
+                                                                                                        name="driverIdentityNumber"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #title
+                                                                                                        type="text"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'vehicleType' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="section-dropdown d-block position-relative">
+                                                                                                    <p-dropdown
+                                                                                                        [disabled]="true"
+                                                                                                        name="vehicleType"
+                                                                                                        [ngClass]="{'dropdown-error': false}"
+                                                                                                        [options]="categories"
+                                                                                                        class="dropdown-customize w-100"
+                                                                                                        optionLabel="label"
+                                                                                                        filter="true">
+                                                                                                    </p-dropdown>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'Company' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="section-dropdown d-block position-relative">
+                                                                                                    <p-dropdown
+                                                                                                        [disabled]="true"
+                                                                                                        name="company"
+                                                                                                        [ngClass]="{'dropdown-error': false}"
+                                                                                                        [options]="companies"
+                                                                                                        class="dropdown-customize w-100"
+                                                                                                        optionLabel="label"
+                                                                                                        filter="true">
+                                                                                                    </p-dropdown>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                            <div class="section-inside">
+                                                                                <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                                    {{ 'Wallet' |localize }}<span class="red">*</span>
+                                                                                </div>
+                                                                                <div class="col container-Engine-information">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 list-Engine-information">
+                                                                                            <div class="section-form-field">
+                                                                                                <span class="ui-float-label section-clear-input design-float-input">
+                                                                                                    <input disabled
+                                                                                                        value="{{driver.walletValue}}"
+                                                                                                        name="walletValue"
+                                                                                                        class="float-input floatInput1"
+                                                                                                        #walletValue
+                                                                                                        type="number"
+                                                                                                        size="30"
+                                                                                                        pInputText>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="button-directions">
+                                                                <button [routerLink]="[ '/app/drivers']" class="btn border-gray ml-2 color-Jade button-design button-cancel-step-form">{{ 'Back' |localize }}</button>
+                                                                <button matStepperNext type="submit" class="btn border-gray mr-2 background-color-Jade color-white button-design">{{ 'Next' |localize }}</button>
+
+                                                            </div>
+                                                        </form>
+                                                    </mat-step>
+                                                    <mat-step>
+                                                        <form #forthForm="ngForm">
+                                                            <ng-template matStepLabel>
+                                                                <div class="icon-matStepLabel">
+                                                                    <span class="default-icon-matStepLabel">
+                                                                        <i class="material-icons">
+                                                                            attachment
+                                                                        </i>
+                                                                    </span>
+                                                                </div>
+                                                                <p class="m-0 paragraphe-matStepLabel">
+                                                                    {{ 'Attachments' |localize }}</p>
+                                                            </ng-template>
+                                                            <div class="container-form-field">
+                                                                <div class="section-fileUpload-stepper">
+                                                                    <div class="preview-uploadFile">
+                                                                        <span class="material-icons addPhoto" *ngIf="!profilePicture">
+                                                                            add_a_photo
+                                                                        </span>
+                                                                        <img *ngIf="profilePicture" [src]="profilePicture" alt="user image" style="width: 100%;" />
+                                                                    </div>
+
+                                                                    <div class="row" style="justify-content:center;">
+                                                                        <label>{{'profilePicture'|localize}}</label>
+                                                                    </div>
+                                                                    <div class="button-preview-uploadFile">
+                                                                    </div>
+                                                                    <input title="Upload image" type="file" class="upload-image-register-dealer" #file accept="image/*" (change)="ImagePreview(file.files)" />
+                                                                </div>
+
+                                                                <div class="section-fileUpload-stepper col-4">
+                                                                    <div class="preview-uploadFile">
+                                                                        <span class="material-icons addPhoto" *ngIf="!identityPicture">
+                                                                            add_a_photo
+                                                                        </span>
+                                                                        <img *ngIf="identityPicture" [src]="identityPicture" alt="user image" style="width: 100%;" />
+                                                                    </div>
+                                                                    <div class="row" style="justify-content:center;">
+                                                                        <label>{{'identityPicture'|localize}}</label>
+                                                                    </div>
+                                                                    <div class="button-preview-uploadFile">
+                                                                        <!-- <button
+                                                                      class="btn button-uploadFile background-color-blue color-white"
+                                                                      (click)="uploadFileVehicle() ">
+                                                                      {{ 'AddPicture' |localize }}
+                                                                      </button>
+                                                                  <button
+                                                                      (click)="RemoveuploadFileRegisterDealer()"
+                                                                      class="btn remove-fileUpload background-color-Lust color-white">
+                                                                      <i
+                                                                          class="material-icons">delete_forever</i>
+                                                                  </button> -->
+
+                                                                    </div>
+                                                                    <input title="Upload image" type="file" class="upload-image-register-dealer" #file accept="image/*" (change)="ImagePreview(file.files)" />
+                                                                </div>
+
+                                                                <div class="section-fileUpload-stepper">
+                                                                    <div class="preview-uploadFile">
+                                                                        <span class="material-icons addPhoto" *ngIf="!lisencePicture">
+                                                                            add_a_photo
+                                                                        </span>
+                                                                        <img *ngIf="lisencePicture" [src]="lisencePicture" alt="user image" style="width: 100%;" />
+                                                                    </div>
+                                                                    <div class="row" style="justify-content:center;">
+                                                                        <label>{{'lisencePicture'|localize}}</label>
+                                                                    </div>
+                                                                    <div class="button-preview-uploadFile">
+                                                                        <!-- <button
+                                                                    class="btn button-uploadFile background-color-blue color-white"
+                                                                    (click)="uploadFileVehicle() ">
+                                                                    {{ 'AddPicture' |localize }}
+                                                                    </button>
+                                                                <button
+                                                                    (click)="RemoveuploadFileRegisterDealer()"
+                                                                    class="btn remove-fileUpload background-color-Lust color-white">
+                                                                    <i
+                                                                        class="material-icons">delete_forever</i>
+                                                                </button> -->
+
+                                                                    </div>
+                                                                    <input title="Upload image" type="file" class="upload-image-register-dealer" #file accept="image/*" (change)="ImagePreview(file.files)" />
+                                                                </div>
+
+
+
+
+                                                                <div class="section-fileUpload-stepper">
+                                                                    <div class="preview-uploadFile">
+                                                                        <span class="material-icons addPhoto" *ngIf="!vehicleLisencePicture">
+                                                                            add_a_photo
+                                                                        </span>
+                                                                        <img *ngIf="vehicleLisencePicture" [src]="vehicleLisencePicture" alt="user image" style="width: 100%;" />
+                                                                    </div>
+                                                                    <div class="row" style="justify-content:center;">
+                                                                        <label>{{'vehicleLisencePicture'|localize}}</label>
+                                                                    </div>
+                                                                    <div class="button-preview-uploadFile">
+                                                                        <!-- <button
+                                                                class="btn button-uploadFile background-color-blue color-white"
+                                                                (click)="uploadFileVehicle() ">
+                                                                {{ 'AddPicture' |localize }}
+                                                                </button>
+                                                            <button
+                                                                (click)="RemoveuploadFileRegisterDealer()"
+                                                                class="btn remove-fileUpload background-color-Lust color-white">
+                                                                <i
+                                                                    class="material-icons">delete_forever</i>
+                                                            </button> -->
+
+                                                                    </div>
+                                                                    <input title="Upload image" type="file" class="upload-image-register-dealer" #file accept="image/*" (change)="ImagePreview(file.files)" />
+                                                                </div>
+
+                                                                <div class="section-fileUpload-stepper">
+                                                                    <div class="preview-uploadFile">
+                                                                        <span class="material-icons addPhoto" *ngIf="!frontVehiclePicture">
+                                                                            add_a_photo
+                                                                        </span>
+                                                                        <img *ngIf="frontVehiclePicture" [src]="frontVehiclePicture" alt="user image" style="width: 100%;" />
+                                                                    </div>
+                                                                    <div class="row" style="justify-content:center;">
+                                                                        <label>{{'frontVehiclePicture'|localize}}</label>
+                                                                    </div>
+                                                                    <div class="button-preview-uploadFile">
+                                                                        <!-- <button
+                                                              class="btn button-uploadFile background-color-blue color-white"
+                                                              (click)="uploadFileVehicle() ">
+                                                              {{ 'AddPicture' |localize }}
+                                                              </button>
+                                                          <button
+                                                              (click)="RemoveuploadFileRegisterDealer()"
+                                                              class="btn remove-fileUpload background-color-Lust color-white">
+                                                              <i
+                                                                  class="material-icons">delete_forever</i>
+                                                          </button> -->
+
+                                                                    </div>
+                                                                    <input title="Upload image" type="file" class="upload-image-register-dealer" #file accept="image/*" (change)="ImagePreview(file.files)" />
+                                                                </div>
+
+                                                                <div class="section-fileUpload-stepper">
+                                                                    <div class="preview-uploadFile">
+                                                                        <span class="material-icons addPhoto" *ngIf="!backVehiclePicture">
+                                                                            add_a_photo
+                                                                        </span>
+                                                                        <img *ngIf="backVehiclePicture" [src]="backVehiclePicture" alt="user image" style="width: 100%;" />
+                                                                    </div>
+                                                                    <div class="row" style="justify-content:center;">
+                                                                        <label>{{'backVehiclePicture'|localize}}</label>
+                                                                    </div>
+                                                                    <div class="button-preview-uploadFile">
+                                                                        <!-- <button
+                                                            class="btn button-uploadFile background-color-blue color-white"
+                                                            (click)="uploadFileVehicle() ">
+                                                            {{ 'AddPicture' |localize }}
+                                                            </button>
+                                                        <button
+                                                            (click)="RemoveuploadFileRegisterDealer()"
+                                                            class="btn remove-fileUpload background-color-Lust color-white">
+                                                            <i
+                                                                class="material-icons">delete_forever</i>
+                                                        </button> -->
+
+                                                                    </div>
+                                                                    <input title="Upload image" type="file" class="upload-image-register-dealer" #file accept="image/*" (change)="ImagePreview(file.files)" />
+                                                                </div>
+
+
+
+                                                            </div>
+
+
+
+
+
+                                                            <div class="button-directions">
+                                                                <button matStepperPrevious class="btn border-gray ml-2 background-color-Jade color-white button-design">{{ 'Previous' |localize }}</button>
+
+                                                            </div>
+                                                        </form>
+                                                    </mat-step>
+                                                </mat-horizontal-stepper>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="modal fade modal-design-admin" bsModal #Supportingfiles="bs-modal" tabindex="9999" role="dialog" aria-labelledby="dialog-static-name" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header background-color-Jade">
+                <h4 class="modal-title title-modal-Researchs pull-left color-white">{{ 'SupportingFiles' |localize }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inside-ministry w-100" [formGroup]="basicFormGroupSupportingfiles">
+                    <div class="section-form-field mb-3">
+                        <span class="ui-float-label section-clear-input section-plus-icon design-float-input">
+                            <i class="material-icons-outlined icon-plus">
+                                attach_file
+                            </i>
+
+                            <input class="float-input" formControlName="controlNameAdditionalFile" readonly
+                                name="controlNameAdditionalFile" #AdditionalFile (click)="UploadAnotherFile()"
+                                type="text" size="30" pInputText>
+
+                            <label for="float-input">{{ 'AdditionalFile' |localize }}</label>
+
+                            <div class="close-icon icon-left"
+                                (click)="removeFileAdditionalFile(objectAdditionalAttachments, AdditionalFile)"
+                                *ngIf="AdditionalFile.value.length">
+                                <i class="material-icons-outlined">close</i>
+                            </div>
+                        </span>
+                        <p class="pragraphe-bottom-field text-right color-gray col-12 m-0">{{ 'FileType' |localize }} JPG, PNG, PDF,DOCX and DOC</p>
+                    </div>
+                    <div class="section-form-field">
+                        <span class="ui-float-label section-clear-input field-textarea design-float-input">
+                            <textarea class="float-input floatInput2" formControlName="FileDescription"
+                                autoResize="autoResize" rows="30" cols="30" #fieldTextarea2 pInputTextarea></textarea>
+                            <label for="float-input">{{ 'FileDescription' |localize }}</label>
+                            <div class="close-icon icon-left" *ngIf="fieldTextarea2.value.length"
+                                (click)="fieldTextarea(fieldTextarea2)">
+                                <i class="material-icons-outlined">close</i>
+                            </div>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn button-send-modal-Researchs color-Jade" (click)="Supportingfiles.hide()">{{ 'Cancel' |localize }}</button>
+                <button class="btn button-send-modal-Researchs color-Jade" (click)="AddSupportingfiles()">{{ 'Add' |localize }}</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
