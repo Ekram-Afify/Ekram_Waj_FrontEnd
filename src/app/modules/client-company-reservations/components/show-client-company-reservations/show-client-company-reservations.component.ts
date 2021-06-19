@@ -281,6 +281,7 @@ export class ShowClientCompanyReservationsComponent
     this.loadReservations();
   }
   applyFilters() {
+    //
     let filetrObj: object = {};
     $(".i-filter").each((ind: number, elem: Element) => {
       if ($(elem).hasClass("table-dropdown-satus")) {
