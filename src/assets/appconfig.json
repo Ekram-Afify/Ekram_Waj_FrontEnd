@@ -1,7 +1,7 @@
 {
-  "remoteServiceBaseUrl": "https://wajeehapp.com/api2",
-  "appBaseUrl": "https://cpanel.wajeehapp.com",
-  "baseRoot": "https://cpanel.wajeehapp.com",
+  "remoteServiceBaseUrl": "http://localhost:21021",
+  "appBaseUrl": "http://localhost:4200",
+  "baseRoot": "http://localhost:4200",
 
   "localeMappings": [
     {

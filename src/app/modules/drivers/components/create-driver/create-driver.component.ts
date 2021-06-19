@@ -238,11 +238,14 @@ export class CreateDriverComponent extends AppComponentBase implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       isDriverAvilable: [false, []],
       isWaselVehicle: [false],
+      isReceiveOrder: [false],
       offDuty: [""],
       isWaselDriver: [false],
+      makePriceOffer: [false],
       phone: ["", [Validators.required, Validators.maxLength(512)]],
       email: ["", [Validators.required, Validators.maxLength(512)]],
       fullName: ["", [Validators.required, Validators.maxLength(512)]],
+      bankAccount: ["", [Validators.required, Validators.maxLength(512)]],
       Plate: ["", [Validators.required, Validators.maxLength(512)]],
       plateType: ["", [Validators.required, Validators.maxLength(512)]],
       walletValue: [""],
@@ -466,10 +469,13 @@ export class CreateDriverComponent extends AppComponentBase implements OnInit {
       this.driver.offDuty = !this.firstFormGroup.value.offDuty;
       this.driver.isWaselDriver = this.firstFormGroup.value.isWaselDriver;
       this.driver.isWaselVehicle = this.firstFormGroup.value.isWaselVehicle;
+      this.driver.isReceiveOrder = this.firstFormGroup.value.isReceiveOrder;
       this.driver.phone = this.firstFormGroup.value.phone;
       this.driver.fullName = this.firstFormGroup.value.fullName;
       this.driver.email = this.firstFormGroup.value.email;
       this.driver.walletValue = this.firstFormGroup.value.walletValue;
+      this.driver.bankAccount = this.firstFormGroup.value.bankAccount;
+      this.driver.makePriceOffer = this.firstFormGroup.value.makePriceOffer;
       if (this.firstFormGroup.value.vehicleType.value) {
         this.driver.vehicleType = this.firstFormGroup.value.vehicleType.value;
       } else if (!this.firstFormGroup.value.vehicleType.value && this.subCats) {
@@ -581,6 +587,7 @@ export class CreateDriverComponent extends AppComponentBase implements OnInit {
 
   save() {
     console.log("driver test : ", this.driver);
+
 debugger;
     this.driver.phone = this.ValidateMobileNumber(this.driver.phone);
     this._personnelService

@@ -33,6 +33,7 @@ import * as ApiServiceProxies from "./service-proxies";
     ApiServiceProxies.NotificationServiceProxy,
     ApiServiceProxies.AdminPanelUserServiceProxy,
     ApiServiceProxies.PaymentServiceProxy,
+    ApiServiceProxies.CompanyDriversReuestsServiceProxy,
 
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
   ],

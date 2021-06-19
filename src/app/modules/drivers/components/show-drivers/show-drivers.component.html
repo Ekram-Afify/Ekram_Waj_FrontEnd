@@ -181,6 +181,7 @@
               <td>{{ personnel.email }}</td>
               <td>{{ personnel.phone }}</td>
               <td>{{ personnel.companyName }}</td>
+              <td>{{ personnel.bankAccount }}</td>
               <td>
                 <div
                   class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
@@ -211,12 +212,7 @@
                   class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
                 >
                   <div class="section-inside">
-                    <!-- <div
-                                            class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12"
-                                          >
-                                            {{ "isWaselDriver" | localize
-                                            }}<span class="red">*</span>
-                                          </div> -->
+             
                     <div
                       class="col pl-0 container-slide-toggle custom-slide-toggle-Vehicles-Step"
                     >
@@ -225,6 +221,46 @@
                         [disabled]="personnel.isWaselVehicle || !availabelEdit"
                         (change)="toggleVechile(personnel.id, $event)"
                         name="isWaselVehicle"
+                      >
+                      </mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                >
+                  <div class="section-inside">
+             
+                    <div
+                      class="col pl-0 container-slide-toggle custom-slide-toggle-Vehicles-Step"
+                    >
+                      <mat-slide-toggle
+                        [(ngModel)]="personnel.makePriceOffer"
+                        [disabled]="personnel.makePriceOffer || !availabelEdit"
+                        (change)="toggleVechile(personnel.id, $event)"
+                        name="makePriceOffer"
+                      >
+                      </mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission"
+                >
+                  <div class="section-inside">
+             
+                    <div
+                      class="col pl-0 container-slide-toggle custom-slide-toggle-Vehicles-Step"
+                    >
+                      <mat-slide-toggle
+                        [(ngModel)]="personnel.isReceiveOrder"
+                        [disabled]="personnel.isReceiveOrder || !availabelEdit"
+                        (change)="toggleVechile(personnel.id, $event)"
+                        name="isReceiveOrder"
                       >
                       </mat-slide-toggle>
                     </div>

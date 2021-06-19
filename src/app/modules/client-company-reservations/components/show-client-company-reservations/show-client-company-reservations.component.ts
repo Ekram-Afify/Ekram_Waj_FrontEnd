@@ -11,6 +11,8 @@ import {
   AdminSubcategoryDtoPagedResultDto,
   CompanyDtoPagedResultDto,
   AdminRequestDto,
+  CompanyDriversReuestsServiceProxy,
+  CompanyDriversReuestDto,
 } from "./../../../../../shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
 import { Component, OnInit, Injector } from "@angular/core";
@@ -21,13 +23,14 @@ import { TranslateService } from "@ngx-translate/core";
 import { finalize } from "rxjs/operators";
 import { getCurrentLanguage } from "root.module";
 import { ActivatedRoute } from "@angular/router";
+import { interval, Observable } from "rxjs";
 
 @Component({
-  selector: "app-show-reservations",
-  templateUrl: "./show-reservations.component.html",
-  styleUrls: ["./show-reservations.component.scss"],
+  selector: "app-show-client-company-reservations",
+  templateUrl: "./show-client-company-reservations.component.html",
+  styleUrls: ["./show-client-company-reservations.component.scss"],
 })
-export class ShowReservationsComponent
+export class ShowClientCompanyReservationsComponent
   extends AppComponentBase
   implements OnInit {
   tabNum = 1;
@@ -47,7 +50,7 @@ export class ShowReservationsComponent
 
   personalStatus: SelectItem;
 
-  reservations: AdminRequestDto[] = [];
+  reservations:CompanyDriversReuestDto[] = [];
 
   reservationsTotalCount: number;
   externalCompaniesTotalCount: number;
@@ -68,12 +71,13 @@ export class ShowReservationsComponent
   reset: any;
   requestId;
   availabelEdit = false;
+  sub: any;
   constructor(
     injector: Injector,
     private translationService: TranslationService,
+   // private modalService: NgbModal,
     private translate: TranslateService,
-   
-    private _reservationService: AdminRequestServiceProxy,
+    private _reservationService: CompanyDriversReuestsServiceProxy,
     private _subcategoriesService: AdminSubategoryServiceProxy,
     private _companyService: CompanyServiceProxy,
     private route: ActivatedRoute,
@@ -96,12 +100,28 @@ export class ShowReservationsComponent
   }
 
   ngOnInit() {
+ 
+  
     this.initItems();
     this.initSubs();
     this.initComps();
     this.initStates();
-    this.loadReservations();
+    this.loadReservations(); 
+    // lood  new reservation 
+    interval(300000).subscribe(
+      (value: number) => {
+        this.loadReservations(); 
+      },
+      (error: any) => {
+        console.log('error');
+      },
+      () => {
+        console.log('observable completed !');
+      }
+    );
+  
   }
+
   loadReservations() {
     this.spinner.show();
     let filetrObj: object = {};
@@ -120,11 +140,7 @@ export class ShowReservationsComponent
 
     this._reservationService
       .getAll(
-        this.state == null ||
-          this.state === undefined ||
-          filetrObj["state"] === ""
-          ? undefined
-          : parseInt(filetrObj["state"]),
+       
         this.subcategory == null || this.subcategory === undefined
           ? undefined
           : this.subcategory.value,
@@ -133,15 +149,13 @@ export class ShowReservationsComponent
           : this.company.value,
          
         JSON.stringify(filetrObj),
-        false,
-        // this.name == null || this.name === undefined ? '' : this.name,
         this.sorting === "" ? undefined : this.sorting,
         this.skipCount,
         this.maxResultCount
       )
       .subscribe((res) => {
         debugger;
-        this.reservations = res.items;
+        this.reservations = res.items
         console.log("reservations : ", this.reservations);
 
         this.totalCount = res.totalCount;
@@ -248,8 +262,6 @@ export class ShowReservationsComponent
       { field: "StratingPointTitle", header: this.l("startingPoint") },
       { field: "EndingPointTitle", header: this.l("endingPoint") },
       { field: "CompanyName", header: this.l("Company") },
-      { field: "Status", header: this.l("Status") },
-      { field: "AcceptedDriverName", header: this.l("Drivers") },
       // { field: "Net", header: this.l("DeliveryCost"), stopFilter: true },
       {
         field: "CreationTime",
@@ -281,33 +293,22 @@ export class ShowReservationsComponent
 
     this.loadReservations();
   }
+  // openGroupInfo(contentClientDetails)
+  // {
 
-  cancelRequest(request) {
-    this.message.confirm(
-      this.l("DeleteConfirmation"),
-      this.l("SystemNotification"),
-      (result) => {
-        if (result) {
-          this._reservationService
-            .cancelRequestFromAdminPanel(request)
-            .pipe(finalize(() => {}))
-            .subscribe((res) => {
-              if (!res) {
-                this.message.error(
-                  this.l("CannotCancel"),
-                  this.l("SystemNotification")
-                );
-              } else {
-                this.message.success(
-                  this.l("CancelSuccessfully", request),
-                  this.l("SystemNotification")
-                );
-                this.loadReservations();
-              }
-            });
-        }
-      }
-    );
-  }
+    
+  
+  //   this.modalService.open(contentClientDetails).result.then(
+  //     result => {
+  //       this.closeResult = `Closed with: ${result}`;
+  //     },
+  //     reason => {
+  //       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //     }
+  //   );
 
-  }
+  // }
+
+
+ 
+}

@@ -214,8 +214,11 @@ export class ShowDriversComponent extends AppComponentBase implements OnInit {
       { field: "Email", header: this.l("email") },
       { field: "Phone", header: this.l("phone") },
       { field: "CompanyName", header: this.l("Company") },
+      { field: "bankAccount", header: this.l("bankAccount") },
       { field: "isWaselDriver", header: this.l("IsWaselDriver") },
       { field: "isWaselVehicle", header: this.l("IsWaselVehicle") },
+      { field: "makePriceOffer", header: this.l("MakePriceOffer") },
+      { field: "isReceiveOrder", header: this.l("IsReceiveOrder") },
     ];
   }
   toggle(driverId, event: MatSlideToggleChange) {

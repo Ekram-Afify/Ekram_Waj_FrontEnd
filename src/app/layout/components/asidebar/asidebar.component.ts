@@ -1,5 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
+import { UserRoleDto, UserServiceProxy } from '@shared/service-proxies/service-proxies';
+import { AppSessionService } from '@shared/session/app-session.service';
 
 
 @Component({
@@ -8,22 +10,28 @@ import { AppComponentBase } from '@shared/app-component-base';
   styleUrls: ['./asidebar.component.css']
 })
 export class AsidebarComponent extends AppComponentBase  implements OnInit {
+  IsClientCompany: boolean;
 
   constructor(
-    injector: Injector
+    injector: Injector,
+    private userService: UserServiceProxy,
+    private appSessionService: AppSessionService,
 ) {
     super(injector);
 }
 
 
   ngOnInit() {
-
+this.isUserInRole("CLIENTCOMPANY");
+    
+  
   }
   Logout() {
 
   }
 
   showMenuItem(permissionName): boolean {
+   
 
     return this.permission.isGranted(permissionName);
 }
@@ -61,4 +69,23 @@ export class AsidebarComponent extends AppComponentBase  implements OnInit {
       }
     })
   }
-}
+
+  isUserInRole(roleName: string) {
+    let isInRole = false;
+    let model= new UserRoleDto();
+    model.roleName=roleName,
+    model.userID=this.appSessionService.user.id
+      
+    
+    this.userService
+      .checkUserRole(model)
+      .subscribe((response) => {
+        this.IsClientCompany = response
+       
+      });
+  }
+
+  }
+
+
+

@@ -220,7 +220,10 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
       controlNameAdditionalFile: ["", Validators.required],
       FileDescription: [""],
     });
-  }
+  }//END ngOnInt()
+
+
+
   getSubs(categoryId) {
     this._SubcategoryService
       .getAll("", categoryId, undefined, 0, 100)
@@ -391,9 +394,12 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
       offDuty: [""],
       isWaselDriver: [""],
       isWaselVehicle: [""],
+      isReceiveOrder:[""],
       phone: ["", [Validators.required, Validators.maxLength(512)]],
       email: ["", [Validators.required, Validators.maxLength(512)]],
       fullName: ["", [Validators.required, Validators.maxLength(512)]],
+      makePriceOffer: [false,[]],
+      bankAccount: ["", [ Validators.maxLength(512)]],
       plate: ["", [Validators.required, Validators.maxLength(512)]],
       plateType: ["", [Validators.required, Validators.maxLength(512)]],
       walletValue: [""],
@@ -421,6 +427,8 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
     });
     if (this.disable) {
       this.firstFormGroup.controls["isDriverAvilable"].disable();
+      this.firstFormGroup.controls["makePriceOffer"].disable();
+      this.firstFormGroup.controls["isReceiveOrder"].disable();
       this.firstFormGroup.controls["isWaselVehicle"].disable();
       this.firstFormGroup.controls["plateType"].disable();
       this.firstFormGroup.controls["offDuty"].disable();
@@ -429,6 +437,7 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
       this.firstFormGroup.controls["email"].disable();
       this.firstFormGroup.controls["walletValue"].disable();
       this.firstFormGroup.controls["fullName"].disable();
+      this.firstFormGroup.controls["bankAccount"].disable();
       this.firstFormGroup.controls["plate"].disable();
       this.firstFormGroup.controls["AddressTitle"].disable();
       this.firstFormGroup.controls["vehicleSequenceNumber"].disable();
@@ -656,6 +665,9 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       isWaselDriver: [this.driver.isWaselDriver],
+      makePriceOffer: [this.driver.makePriceOffer],
+      isReceiveOrder:[this.driver.isReceiveOrder],
+      bankAccount: [this.driver.bankAccount],
       isWaselVehicle: [this.driver.isWaselVehicle],
       isDriverAvilable: [this.driver.isDriverAvilable, []],
       offDuty: [!this.driver.offDuty],
@@ -731,8 +743,11 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
       this.driver.phone = this.firstFormGroup.value.phone;
       this.driver.isWaselDriver = this.firstFormGroup.value.isWaselDriver;
       this.driver.isWaselVehicle = this.firstFormGroup.value.isWaselVehicle;
+      this.driver.isReceiveOrder = this.firstFormGroup.value.isReceiveOrder;
       this.driver.fullName = this.firstFormGroup.value.fullName;
       this.driver.email = this.firstFormGroup.value.email;
+      this.driver.bankAccount = this.firstFormGroup.value.bankAccount;
+      this.driver.makePriceOffer = this.firstFormGroup.value.makePriceOffer;
       this.driver.walletValue = this.firstFormGroup.value.walletValue;
       this.driver.vehicleSequenceNumber = this.firstFormGroup.value.vehicleSequenceNumber;
       this.driver.driverIdentityNumber = this.firstFormGroup.value.driverIdentityNumber;
@@ -744,8 +759,8 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
       this.driver.companyId = this.firstFormGroup.value.company.value;
       this.driver.offDuty = !this.firstFormGroup.get("offDuty").value;
       this.driver.addressTitle = this.firstFormGroup.value.AddressTitle;
-      this.driver.dateOfBirthGregorian = this.firstFormGroup.value.dateOfBirthGregorian.format("YYYYDDMM");
-      this.driver.dateOfBirthHijri = this.firstFormGroup.value.dateOfBirthHijri.format("YYYYDDMM");
+      this.driver.dateOfBirthGregorian = this.firstFormGroup.value.dateOfBirthGregorian;//.format("YYYYDDMM");;
+      this.driver.dateOfBirthHijri = this.firstFormGroup.value.dateOfBirthHijri;//.format("YYYYDDMM");
       this.driver.plate = this.firstFormGroup.value.plate;
       this.driver.plateTypeId = this.firstFormGroup.value.plateType.value;
       this.driver.lat = this.latitude;

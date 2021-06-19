@@ -88,6 +88,14 @@ import { ChangePasswordComponent } from "./users/change-password/change-password
             canActivate: [AppRouteGuard],
           },
           {
+            path: "client-company-reservations",
+            loadChildren: () =>
+              import("./modules/client-company-reservations/client-company-reservations.module").then(
+                (m) => m.ClientCompanyReservationsModule
+              ),
+              data: { permission: "Pages.ClientCompany" },
+          },
+          {
             path: "reservations",
             loadChildren: () =>
               import("./modules/reservations/reservations.module").then(

@@ -53,6 +53,22 @@
         </a>
       </li>
 
+      <li
+        class="list-asidebarnav-item li-dropdown"
+        routerLinkActive="active"
+        *ngIf="showMenuItem('Pages.ClientCompany') && IsClientCompany"
+      >
+        <a [routerLink]="['/app/client-company-reservations']">
+          <div class="list-asidebar-inside">
+            <div class="icon-list-asidebar">
+              <i class="material-icons-outlined">commute</i>
+            </div>
+            <span class="span-list-asidebar">{{ "CompanyDriversRequests" | localize }}</span>
+          </div>
+        </a>
+      </li>
+
+
       <!-- <li class="list-asidebarnav-item li-dropdown" routerLinkActive="active" *ngIf="showMenuItem('Pages.Users')">
         <a [routerLink]="['/app/companyClients']">
           <div class="list-asidebar-inside">

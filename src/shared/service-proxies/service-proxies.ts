@@ -1896,6 +1896,61 @@ export class AdminDriverServiceProxy {
     }
 
     /**
+     * @return Success
+     */
+    getUnPricedDrivers(): Observable<SelectedDriver[]> {
+        let url_ = this.baseUrl + "/api/services/app/AdminDriver/GetUnPricedDrivers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetUnPricedDrivers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetUnPricedDrivers(<any>response_);
+                } catch (e) {
+                    return <Observable<SelectedDriver[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<SelectedDriver[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetUnPricedDrivers(response: HttpResponseBase): Observable<SelectedDriver[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(SelectedDriver.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<SelectedDriver[]>(<any>null);
+    }
+
+    /**
      * @param id (optional) 
      * @return Success
      */
@@ -7105,6 +7160,319 @@ export class CompanyServiceProxy {
 }
 
 @Injectable()
+export class CompanyDriversReuestsServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    get(id: number | undefined): Observable<CompanyDriversReuestDto> {
+        let url_ = this.baseUrl + "/api/services/app/CompanyDriversReuests/Get?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<CompanyDriversReuestDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<CompanyDriversReuestDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<CompanyDriversReuestDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CompanyDriversReuestDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CompanyDriversReuestDto>(<any>null);
+    }
+
+    /**
+     * @param subcategoryId (optional) 
+     * @param companyId (optional) 
+     * @param keyWord (optional) 
+     * @param sorting (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
+     * @return Success
+     */
+    getAll(subcategoryId: number | undefined, companyId: number | undefined, keyWord: string | undefined, sorting: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CompanyDriversReuestDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/api/services/app/CompanyDriversReuests/GetAll?";
+        if (subcategoryId === null)
+            throw new Error("The parameter 'subcategoryId' cannot be null.");
+        else if (subcategoryId !== undefined)
+            url_ += "SubcategoryId=" + encodeURIComponent("" + subcategoryId) + "&";
+        if (companyId === null)
+            throw new Error("The parameter 'companyId' cannot be null.");
+        else if (companyId !== undefined)
+            url_ += "CompanyId=" + encodeURIComponent("" + companyId) + "&";
+        if (keyWord === null)
+            throw new Error("The parameter 'keyWord' cannot be null.");
+        else if (keyWord !== undefined)
+            url_ += "KeyWord=" + encodeURIComponent("" + keyWord) + "&";
+        if (sorting === null)
+            throw new Error("The parameter 'sorting' cannot be null.");
+        else if (sorting !== undefined)
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<CompanyDriversReuestDtoPagedResultDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<CompanyDriversReuestDtoPagedResultDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<CompanyDriversReuestDtoPagedResultDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CompanyDriversReuestDtoPagedResultDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CompanyDriversReuestDtoPagedResultDto>(<any>null);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    create(body: CompanyDriversReuestDto | undefined): Observable<CompanyDriversReuestDto> {
+        let url_ = this.baseUrl + "/api/services/app/CompanyDriversReuests/Create";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<CompanyDriversReuestDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<CompanyDriversReuestDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<CompanyDriversReuestDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CompanyDriversReuestDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CompanyDriversReuestDto>(<any>null);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    update(body: CompanyDriversReuestDto | undefined): Observable<CompanyDriversReuestDto> {
+        let url_ = this.baseUrl + "/api/services/app/CompanyDriversReuests/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<CompanyDriversReuestDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<CompanyDriversReuestDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<CompanyDriversReuestDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CompanyDriversReuestDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CompanyDriversReuestDto>(<any>null);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    delete(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/CompanyDriversReuests/Delete?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<void>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(<any>null);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(<any>null);
+    }
+}
+
+@Injectable()
 export class ConfigurationServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
@@ -9414,6 +9782,62 @@ export class OfferPriceServiceProxy {
     }
 
     /**
+     * @param body (optional) 
+     * @return Success
+     */
+    clientComanyOfferNewOfferPrice(body: CreateOfferPriceDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/OfferPrice/ClientComanyOfferNewOfferPrice";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processClientComanyOfferNewOfferPrice(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processClientComanyOfferNewOfferPrice(<any>response_);
+                } catch (e) {
+                    return <Observable<boolean>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<boolean>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processClientComanyOfferNewOfferPrice(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<boolean>(<any>null);
+    }
+
+    /**
      * @param sorting (optional) 
      * @param skipCount (optional) 
      * @param maxResultCount (optional) 
@@ -10617,6 +11041,62 @@ export class PaymentServiceProxy {
             }));
         }
         return _observableOf<PaymentDto>(<any>null);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    hyperRequest(body: HyperRequestDto | undefined): Observable<CheckOutResponse> {
+        let url_ = this.baseUrl + "/api/services/app/Payment/HyperRequest";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processHyperRequest(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processHyperRequest(<any>response_);
+                } catch (e) {
+                    return <Observable<CheckOutResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<CheckOutResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processHyperRequest(response: HttpResponseBase): Observable<CheckOutResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CheckOutResponse.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CheckOutResponse>(<any>null);
     }
 
     /**
@@ -15631,6 +16111,62 @@ export class UserServiceProxy {
     }
 
     /**
+     * @param body (optional) 
+     * @return Success
+     */
+    checkUserRole(body: UserRoleDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/User/CheckUserRole";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCheckUserRole(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCheckUserRole(<any>response_);
+                } catch (e) {
+                    return <Observable<boolean>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<boolean>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCheckUserRole(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<boolean>(<any>null);
+    }
+
+    /**
      * @param id (optional) 
      * @return Success
      */
@@ -17965,6 +18501,9 @@ export class AdminCreateDriverDto implements IAdminCreateDriverDto {
     isWaselVehicle: boolean;
     plateTypeId: number | undefined;
     walletValue: number;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
+    isReceiveOrder: boolean;
 
     constructor(data?: IAdminCreateDriverDto) {
         if (data) {
@@ -17997,6 +18536,9 @@ export class AdminCreateDriverDto implements IAdminCreateDriverDto {
             this.isWaselVehicle = _data["isWaselVehicle"];
             this.plateTypeId = _data["plateTypeId"];
             this.walletValue = _data["walletValue"];
+            this.bankAccount = _data["bankAccount"];
+            this.makePriceOffer = _data["makePriceOffer"];
+            this.isReceiveOrder = _data["isReceiveOrder"];
         }
     }
 
@@ -18029,6 +18571,9 @@ export class AdminCreateDriverDto implements IAdminCreateDriverDto {
         data["isWaselVehicle"] = this.isWaselVehicle;
         data["plateTypeId"] = this.plateTypeId;
         data["walletValue"] = this.walletValue;
+        data["bankAccount"] = this.bankAccount;
+        data["makePriceOffer"] = this.makePriceOffer;
+        data["isReceiveOrder"] = this.isReceiveOrder;
         return data; 
     }
 
@@ -18061,6 +18606,9 @@ export interface IAdminCreateDriverDto {
     isWaselVehicle: boolean;
     plateTypeId: number | undefined;
     walletValue: number;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
+    isReceiveOrder: boolean;
 }
 
 export class MessageModel implements IMessageModel {
@@ -18135,6 +18683,9 @@ export class AdminUpdateDriverDto implements IAdminUpdateDriverDto {
     isWaselVehicle: boolean;
     plateTypeId: number | undefined;
     walletValue: number;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
+    isReceiveOrder: boolean;
     id: number;
 
     constructor(data?: IAdminUpdateDriverDto) {
@@ -18168,6 +18719,9 @@ export class AdminUpdateDriverDto implements IAdminUpdateDriverDto {
             this.isWaselVehicle = _data["isWaselVehicle"];
             this.plateTypeId = _data["plateTypeId"];
             this.walletValue = _data["walletValue"];
+            this.bankAccount = _data["bankAccount"];
+            this.makePriceOffer = _data["makePriceOffer"];
+            this.isReceiveOrder = _data["isReceiveOrder"];
             this.id = _data["id"];
         }
     }
@@ -18201,6 +18755,9 @@ export class AdminUpdateDriverDto implements IAdminUpdateDriverDto {
         data["isWaselVehicle"] = this.isWaselVehicle;
         data["plateTypeId"] = this.plateTypeId;
         data["walletValue"] = this.walletValue;
+        data["bankAccount"] = this.bankAccount;
+        data["makePriceOffer"] = this.makePriceOffer;
+        data["isReceiveOrder"] = this.isReceiveOrder;
         data["id"] = this.id;
         return data; 
     }
@@ -18234,6 +18791,9 @@ export interface IAdminUpdateDriverDto {
     isWaselVehicle: boolean;
     plateTypeId: number | undefined;
     walletValue: number;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
+    isReceiveOrder: boolean;
     id: number;
 }
 
@@ -18470,6 +19030,57 @@ export interface IWaselResponseDTOC {
     resultCode: string | undefined;
 }
 
+export class SelectedDriver implements ISelectedDriver {
+    id: number;
+    name: string | undefined;
+    readonly userId: number;
+
+    constructor(data?: ISelectedDriver) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            (<any>this).userId = _data["userId"];
+        }
+    }
+
+    static fromJS(data: any): SelectedDriver {
+        data = typeof data === 'object' ? data : {};
+        let result = new SelectedDriver();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["userId"] = this.userId;
+        return data; 
+    }
+
+    clone(): SelectedDriver {
+        const json = this.toJSON();
+        let result = new SelectedDriver();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ISelectedDriver {
+    id: number;
+    name: string | undefined;
+    userId: number;
+}
+
 export class AdminDriverDto implements IAdminDriverDto {
     vehicleSequenceNumber: string | undefined;
     driverIdentityNumber: string | undefined;
@@ -18493,6 +19104,9 @@ export class AdminDriverDto implements IAdminDriverDto {
     isWaselVehicle: boolean;
     plateTypeId: number | undefined;
     walletValue: number;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
+    isReceiveOrder: boolean;
     lastModificationTime: moment.Moment | undefined;
     lastModifierUserId: number | undefined;
     creationTime: moment.Moment;
@@ -18532,6 +19146,9 @@ export class AdminDriverDto implements IAdminDriverDto {
             this.isWaselVehicle = _data["isWaselVehicle"];
             this.plateTypeId = _data["plateTypeId"];
             this.walletValue = _data["walletValue"];
+            this.bankAccount = _data["bankAccount"];
+            this.makePriceOffer = _data["makePriceOffer"];
+            this.isReceiveOrder = _data["isReceiveOrder"];
             this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
             this.lastModifierUserId = _data["lastModifierUserId"];
             this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
@@ -18571,6 +19188,9 @@ export class AdminDriverDto implements IAdminDriverDto {
         data["isWaselVehicle"] = this.isWaselVehicle;
         data["plateTypeId"] = this.plateTypeId;
         data["walletValue"] = this.walletValue;
+        data["bankAccount"] = this.bankAccount;
+        data["makePriceOffer"] = this.makePriceOffer;
+        data["isReceiveOrder"] = this.isReceiveOrder;
         data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
         data["lastModifierUserId"] = this.lastModifierUserId;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
@@ -18610,6 +19230,9 @@ export interface IAdminDriverDto {
     isWaselVehicle: boolean;
     plateTypeId: number | undefined;
     walletValue: number;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
+    isReceiveOrder: boolean;
     lastModificationTime: moment.Moment | undefined;
     lastModifierUserId: number | undefined;
     creationTime: moment.Moment;
@@ -18677,6 +19300,7 @@ export class TopRequestSalesDriverDto implements ITopRequestSalesDriverDto {
     requestsCount: number;
     email: string | undefined;
     phone: string | undefined;
+    companyName: string | undefined;
     id: number;
 
     constructor(data?: ITopRequestSalesDriverDto) {
@@ -18694,6 +19318,7 @@ export class TopRequestSalesDriverDto implements ITopRequestSalesDriverDto {
             this.requestsCount = _data["requestsCount"];
             this.email = _data["email"];
             this.phone = _data["phone"];
+            this.companyName = _data["companyName"];
             this.id = _data["id"];
         }
     }
@@ -18711,6 +19336,7 @@ export class TopRequestSalesDriverDto implements ITopRequestSalesDriverDto {
         data["requestsCount"] = this.requestsCount;
         data["email"] = this.email;
         data["phone"] = this.phone;
+        data["companyName"] = this.companyName;
         data["id"] = this.id;
         return data; 
     }
@@ -18728,6 +19354,7 @@ export interface ITopRequestSalesDriverDto {
     requestsCount: number;
     email: string | undefined;
     phone: string | undefined;
+    companyName: string | undefined;
     id: number;
 }
 
@@ -19563,6 +20190,7 @@ export class RequestDto implements IRequestDto {
     rate: number | undefined;
     isClientRated: boolean | undefined;
     clientRate: number | undefined;
+    receiverMobile: string | undefined;
     id: number;
 
     constructor(data?: IRequestDto) {
@@ -19597,6 +20225,7 @@ export class RequestDto implements IRequestDto {
             this.rate = _data["rate"];
             this.isClientRated = _data["isClientRated"];
             this.clientRate = _data["clientRate"];
+            this.receiverMobile = _data["receiverMobile"];
             this.id = _data["id"];
         }
     }
@@ -19631,6 +20260,7 @@ export class RequestDto implements IRequestDto {
         data["rate"] = this.rate;
         data["isClientRated"] = this.isClientRated;
         data["clientRate"] = this.clientRate;
+        data["receiverMobile"] = this.receiverMobile;
         data["id"] = this.id;
         return data; 
     }
@@ -19665,6 +20295,7 @@ export interface IRequestDto {
     rate: number | undefined;
     isClientRated: boolean | undefined;
     clientRate: number | undefined;
+    receiverMobile: string | undefined;
     id: number;
 }
 
@@ -19894,6 +20525,7 @@ export class AdminCreateRequestDto implements IAdminCreateRequestDto {
     subcategoryId: number;
     status: number;
     deliveryCost: string | undefined;
+    receiverMobile: string | undefined;
 
     constructor(data?: IAdminCreateRequestDto) {
         if (data) {
@@ -19921,6 +20553,7 @@ export class AdminCreateRequestDto implements IAdminCreateRequestDto {
             this.subcategoryId = _data["subcategoryId"];
             this.status = _data["status"];
             this.deliveryCost = _data["deliveryCost"];
+            this.receiverMobile = _data["receiverMobile"];
         }
     }
 
@@ -19948,6 +20581,7 @@ export class AdminCreateRequestDto implements IAdminCreateRequestDto {
         data["subcategoryId"] = this.subcategoryId;
         data["status"] = this.status;
         data["deliveryCost"] = this.deliveryCost;
+        data["receiverMobile"] = this.receiverMobile;
         return data; 
     }
 
@@ -19975,6 +20609,7 @@ export interface IAdminCreateRequestDto {
     subcategoryId: number;
     status: number;
     deliveryCost: string | undefined;
+    receiverMobile: string | undefined;
 }
 
 export class ShortClientDto implements IShortClientDto {
@@ -20065,6 +20700,7 @@ export class AdminRequestDto implements IAdminRequestDto {
     vat: number;
     vatAmount: number;
     client: ShortClientDto;
+    receiverMobile: string | undefined;
     id: number;
 
     constructor(data?: IAdminRequestDto) {
@@ -20106,6 +20742,7 @@ export class AdminRequestDto implements IAdminRequestDto {
             this.vat = _data["vat"];
             this.vatAmount = _data["vatAmount"];
             this.client = _data["client"] ? ShortClientDto.fromJS(_data["client"]) : <any>undefined;
+            this.receiverMobile = _data["receiverMobile"];
             this.id = _data["id"];
         }
     }
@@ -20147,6 +20784,7 @@ export class AdminRequestDto implements IAdminRequestDto {
         data["vat"] = this.vat;
         data["vatAmount"] = this.vatAmount;
         data["client"] = this.client ? this.client.toJSON() : <any>undefined;
+        data["receiverMobile"] = this.receiverMobile;
         data["id"] = this.id;
         return data; 
     }
@@ -20188,6 +20826,7 @@ export interface IAdminRequestDto {
     vat: number;
     vatAmount: number;
     client: ShortClientDto;
+    receiverMobile: string | undefined;
     id: number;
 }
 
@@ -20206,6 +20845,7 @@ export class AdminUpdateRquestDto implements IAdminUpdateRquestDto {
     subcategoryId: number;
     status: number;
     deliveryCost: string | undefined;
+    receiverMobile: string | undefined;
     id: number;
 
     constructor(data?: IAdminUpdateRquestDto) {
@@ -20233,6 +20873,7 @@ export class AdminUpdateRquestDto implements IAdminUpdateRquestDto {
             this.subcategoryId = _data["subcategoryId"];
             this.status = _data["status"];
             this.deliveryCost = _data["deliveryCost"];
+            this.receiverMobile = _data["receiverMobile"];
             this.id = _data["id"];
         }
     }
@@ -20260,6 +20901,7 @@ export class AdminUpdateRquestDto implements IAdminUpdateRquestDto {
         data["subcategoryId"] = this.subcategoryId;
         data["status"] = this.status;
         data["deliveryCost"] = this.deliveryCost;
+        data["receiverMobile"] = this.receiverMobile;
         data["id"] = this.id;
         return data; 
     }
@@ -20287,6 +20929,7 @@ export interface IAdminUpdateRquestDto {
     subcategoryId: number;
     status: number;
     deliveryCost: string | undefined;
+    receiverMobile: string | undefined;
     id: number;
 }
 
@@ -21534,7 +22177,10 @@ export class Driver implements IDriver {
     offDuty: boolean;
     trackingTrips: TrackingTrip[] | undefined;
     isWaselDriver: boolean;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
     isWaselVehicle: boolean;
+    isReceiveOrder: boolean;
     plateTypeId: number | undefined;
     plateType: PlateType;
     isDeleted: boolean;
@@ -21582,7 +22228,10 @@ export class Driver implements IDriver {
                     this.trackingTrips.push(TrackingTrip.fromJS(item));
             }
             this.isWaselDriver = _data["isWaselDriver"];
+            this.bankAccount = _data["bankAccount"];
+            this.makePriceOffer = _data["makePriceOffer"];
             this.isWaselVehicle = _data["isWaselVehicle"];
+            this.isReceiveOrder = _data["isReceiveOrder"];
             this.plateTypeId = _data["plateTypeId"];
             this.plateType = _data["plateType"] ? PlateType.fromJS(_data["plateType"]) : <any>undefined;
             this.isDeleted = _data["isDeleted"];
@@ -21630,7 +22279,10 @@ export class Driver implements IDriver {
                 data["trackingTrips"].push(item.toJSON());
         }
         data["isWaselDriver"] = this.isWaselDriver;
+        data["bankAccount"] = this.bankAccount;
+        data["makePriceOffer"] = this.makePriceOffer;
         data["isWaselVehicle"] = this.isWaselVehicle;
+        data["isReceiveOrder"] = this.isReceiveOrder;
         data["plateTypeId"] = this.plateTypeId;
         data["plateType"] = this.plateType ? this.plateType.toJSON() : <any>undefined;
         data["isDeleted"] = this.isDeleted;
@@ -21674,7 +22326,10 @@ export interface IDriver {
     offDuty: boolean;
     trackingTrips: TrackingTrip[] | undefined;
     isWaselDriver: boolean;
+    bankAccount: string | undefined;
+    makePriceOffer: boolean;
     isWaselVehicle: boolean;
+    isReceiveOrder: boolean;
     plateTypeId: number | undefined;
     plateType: PlateType;
     isDeleted: boolean;
@@ -22658,6 +23313,7 @@ export class OfferPrice implements IOfferPrice {
     requestId: number;
     request: Request;
     driverId: number;
+    driver: User;
     isDeleted: boolean;
     deleterUserId: number | undefined;
     deletionTime: moment.Moment | undefined;
@@ -22698,6 +23354,7 @@ export class OfferPrice implements IOfferPrice {
             this.requestId = _data["requestId"];
             this.request = _data["request"] ? Request.fromJS(_data["request"]) : <any>undefined;
             this.driverId = _data["driverId"];
+            this.driver = _data["driver"] ? User.fromJS(_data["driver"]) : <any>undefined;
             this.isDeleted = _data["isDeleted"];
             this.deleterUserId = _data["deleterUserId"];
             this.deletionTime = _data["deletionTime"] ? moment(_data["deletionTime"].toString()) : <any>undefined;
@@ -22738,6 +23395,7 @@ export class OfferPrice implements IOfferPrice {
         data["requestId"] = this.requestId;
         data["request"] = this.request ? this.request.toJSON() : <any>undefined;
         data["driverId"] = this.driverId;
+        data["driver"] = this.driver ? this.driver.toJSON() : <any>undefined;
         data["isDeleted"] = this.isDeleted;
         data["deleterUserId"] = this.deleterUserId;
         data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
@@ -22778,6 +23436,7 @@ export interface IOfferPrice {
     requestId: number;
     request: Request;
     driverId: number;
+    driver: User;
     isDeleted: boolean;
     deleterUserId: number | undefined;
     deletionTime: moment.Moment | undefined;
@@ -22810,6 +23469,7 @@ export class Request implements IRequest {
     userRequset: User;
     status: number;
     deliveryCost: string | undefined;
+    receiverMobile: string | undefined;
     offerPrices: OfferPrice[] | undefined;
     isDeleted: boolean;
     deleterUserId: number | undefined;
@@ -22852,6 +23512,7 @@ export class Request implements IRequest {
             this.userRequset = _data["userRequset"] ? User.fromJS(_data["userRequset"]) : <any>undefined;
             this.status = _data["status"];
             this.deliveryCost = _data["deliveryCost"];
+            this.receiverMobile = _data["receiverMobile"];
             if (Array.isArray(_data["offerPrices"])) {
                 this.offerPrices = [] as any;
                 for (let item of _data["offerPrices"])
@@ -22898,6 +23559,7 @@ export class Request implements IRequest {
         data["userRequset"] = this.userRequset ? this.userRequset.toJSON() : <any>undefined;
         data["status"] = this.status;
         data["deliveryCost"] = this.deliveryCost;
+        data["receiverMobile"] = this.receiverMobile;
         if (Array.isArray(this.offerPrices)) {
             data["offerPrices"] = [];
             for (let item of this.offerPrices)
@@ -22944,6 +23606,7 @@ export interface IRequest {
     userRequset: User;
     status: number;
     deliveryCost: string | undefined;
+    receiverMobile: string | undefined;
     offerPrices: OfferPrice[] | undefined;
     isDeleted: boolean;
     deleterUserId: number | undefined;
@@ -24242,6 +24905,216 @@ export interface IUpdateCompanyDto {
     id: number;
 }
 
+export class CompanyDriversReuestDto implements ICompanyDriversReuestDto {
+    isReg: boolean | undefined;
+    discountPercentage: number;
+    arrivalDateTime: moment.Moment;
+    paymentWay: number;
+    notes: string | undefined;
+    startingPoint: string | undefined;
+    endingPoint: string | undefined;
+    stratingPointAdress: string | undefined;
+    stratingPointTitle: string | undefined;
+    endingPointAdress: string | undefined;
+    endingPointTitle: string | undefined;
+    subcategoryId: number;
+    subcategoryDisplayName: string | undefined;
+    status: number;
+    requestStateName: string | undefined;
+    deliveryCost: string | undefined;
+    isRated: boolean | undefined;
+    rate: number | undefined;
+    isClientRated: boolean | undefined;
+    clientRate: number | undefined;
+    creationTime: moment.Moment;
+    ctString: string | undefined;
+    acceptedDriverName: string | undefined;
+    net: number;
+    customerName: string | undefined;
+    vat: number;
+    vatAmount: number;
+    client: ShortClientDto;
+    id: number;
+
+    constructor(data?: ICompanyDriversReuestDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.isReg = _data["isReg"];
+            this.discountPercentage = _data["discountPercentage"];
+            this.arrivalDateTime = _data["arrivalDateTime"] ? moment(_data["arrivalDateTime"].toString()) : <any>undefined;
+            this.paymentWay = _data["paymentWay"];
+            this.notes = _data["notes"];
+            this.startingPoint = _data["startingPoint"];
+            this.endingPoint = _data["endingPoint"];
+            this.stratingPointAdress = _data["stratingPointAdress"];
+            this.stratingPointTitle = _data["stratingPointTitle"];
+            this.endingPointAdress = _data["endingPointAdress"];
+            this.endingPointTitle = _data["endingPointTitle"];
+            this.subcategoryId = _data["subcategoryId"];
+            this.subcategoryDisplayName = _data["subcategoryDisplayName"];
+            this.status = _data["status"];
+            this.requestStateName = _data["requestStateName"];
+            this.deliveryCost = _data["deliveryCost"];
+            this.isRated = _data["isRated"];
+            this.rate = _data["rate"];
+            this.isClientRated = _data["isClientRated"];
+            this.clientRate = _data["clientRate"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.ctString = _data["ctString"];
+            this.acceptedDriverName = _data["acceptedDriverName"];
+            this.net = _data["net"];
+            this.customerName = _data["customerName"];
+            this.vat = _data["vat"];
+            this.vatAmount = _data["vatAmount"];
+            this.client = _data["client"] ? ShortClientDto.fromJS(_data["client"]) : <any>undefined;
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): CompanyDriversReuestDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CompanyDriversReuestDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["isReg"] = this.isReg;
+        data["discountPercentage"] = this.discountPercentage;
+        data["arrivalDateTime"] = this.arrivalDateTime ? this.arrivalDateTime.toISOString() : <any>undefined;
+        data["paymentWay"] = this.paymentWay;
+        data["notes"] = this.notes;
+        data["startingPoint"] = this.startingPoint;
+        data["endingPoint"] = this.endingPoint;
+        data["stratingPointAdress"] = this.stratingPointAdress;
+        data["stratingPointTitle"] = this.stratingPointTitle;
+        data["endingPointAdress"] = this.endingPointAdress;
+        data["endingPointTitle"] = this.endingPointTitle;
+        data["subcategoryId"] = this.subcategoryId;
+        data["subcategoryDisplayName"] = this.subcategoryDisplayName;
+        data["status"] = this.status;
+        data["requestStateName"] = this.requestStateName;
+        data["deliveryCost"] = this.deliveryCost;
+        data["isRated"] = this.isRated;
+        data["rate"] = this.rate;
+        data["isClientRated"] = this.isClientRated;
+        data["clientRate"] = this.clientRate;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["ctString"] = this.ctString;
+        data["acceptedDriverName"] = this.acceptedDriverName;
+        data["net"] = this.net;
+        data["customerName"] = this.customerName;
+        data["vat"] = this.vat;
+        data["vatAmount"] = this.vatAmount;
+        data["client"] = this.client ? this.client.toJSON() : <any>undefined;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): CompanyDriversReuestDto {
+        const json = this.toJSON();
+        let result = new CompanyDriversReuestDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICompanyDriversReuestDto {
+    isReg: boolean | undefined;
+    discountPercentage: number;
+    arrivalDateTime: moment.Moment;
+    paymentWay: number;
+    notes: string | undefined;
+    startingPoint: string | undefined;
+    endingPoint: string | undefined;
+    stratingPointAdress: string | undefined;
+    stratingPointTitle: string | undefined;
+    endingPointAdress: string | undefined;
+    endingPointTitle: string | undefined;
+    subcategoryId: number;
+    subcategoryDisplayName: string | undefined;
+    status: number;
+    requestStateName: string | undefined;
+    deliveryCost: string | undefined;
+    isRated: boolean | undefined;
+    rate: number | undefined;
+    isClientRated: boolean | undefined;
+    clientRate: number | undefined;
+    creationTime: moment.Moment;
+    ctString: string | undefined;
+    acceptedDriverName: string | undefined;
+    net: number;
+    customerName: string | undefined;
+    vat: number;
+    vatAmount: number;
+    client: ShortClientDto;
+    id: number;
+}
+
+export class CompanyDriversReuestDtoPagedResultDto implements ICompanyDriversReuestDtoPagedResultDto {
+    totalCount: number;
+    items: CompanyDriversReuestDto[] | undefined;
+
+    constructor(data?: ICompanyDriversReuestDtoPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.totalCount = _data["totalCount"];
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items.push(CompanyDriversReuestDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): CompanyDriversReuestDtoPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CompanyDriversReuestDtoPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+
+    clone(): CompanyDriversReuestDtoPagedResultDto {
+        const json = this.toJSON();
+        let result = new CompanyDriversReuestDtoPagedResultDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICompanyDriversReuestDtoPagedResultDto {
+    totalCount: number;
+    items: CompanyDriversReuestDto[] | undefined;
+}
+
 export class ChangeUiThemeInput implements IChangeUiThemeInput {
     theme: string | undefined;
 
@@ -25383,6 +26256,7 @@ export class RequestWOfferPriceDto implements IRequestWOfferPriceDto {
     isClientRated: boolean | undefined;
     clientRate: number | undefined;
     clientName: string | undefined;
+    readonly driverAvrgRate: number;
 
     constructor(data?: IRequestWOfferPriceDto) {
         if (data) {
@@ -25425,6 +26299,7 @@ export class RequestWOfferPriceDto implements IRequestWOfferPriceDto {
             this.isClientRated = _data["isClientRated"];
             this.clientRate = _data["clientRate"];
             this.clientName = _data["clientName"];
+            (<any>this).driverAvrgRate = _data["driverAvrgRate"];
         }
     }
 
@@ -25467,6 +26342,7 @@ export class RequestWOfferPriceDto implements IRequestWOfferPriceDto {
         data["isClientRated"] = this.isClientRated;
         data["clientRate"] = this.clientRate;
         data["clientName"] = this.clientName;
+        data["driverAvrgRate"] = this.driverAvrgRate;
         return data; 
     }
 
@@ -25509,6 +26385,7 @@ export interface IRequestWOfferPriceDto {
     isClientRated: boolean | undefined;
     clientRate: number | undefined;
     clientName: string | undefined;
+    driverAvrgRate: number;
 }
 
 export class RequestWOfferPriceDtoPagedResultDto implements IRequestWOfferPriceDtoPagedResultDto {
@@ -25574,6 +26451,7 @@ export class CreateOfferPriceDto implements ICreateOfferPriceDto {
     deliveryThroughMinutes: number;
     deliveryThroughSeconds: number;
     requestId: number;
+    driverUserId: number;
 
     constructor(data?: ICreateOfferPriceDto) {
         if (data) {
@@ -25593,6 +26471,7 @@ export class CreateOfferPriceDto implements ICreateOfferPriceDto {
             this.deliveryThroughMinutes = _data["deliveryThroughMinutes"];
             this.deliveryThroughSeconds = _data["deliveryThroughSeconds"];
             this.requestId = _data["requestId"];
+            this.driverUserId = _data["driverUserId"];
         }
     }
 
@@ -25612,6 +26491,7 @@ export class CreateOfferPriceDto implements ICreateOfferPriceDto {
         data["deliveryThroughMinutes"] = this.deliveryThroughMinutes;
         data["deliveryThroughSeconds"] = this.deliveryThroughSeconds;
         data["requestId"] = this.requestId;
+        data["driverUserId"] = this.driverUserId;
         return data; 
     }
 
@@ -25631,6 +26511,7 @@ export interface ICreateOfferPriceDto {
     deliveryThroughMinutes: number;
     deliveryThroughSeconds: number;
     requestId: number;
+    driverUserId: number;
 }
 
 export class RateDriverByOfferDto implements IRateDriverByOfferDto {
@@ -26596,6 +27477,159 @@ export interface IPaymentDto {
     id: number;
 }
 
+export class HyperRequestDto implements IHyperRequestDto {
+    amount: number;
+    currency: string | undefined;
+
+    constructor(data?: IHyperRequestDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.amount = _data["amount"];
+            this.currency = _data["currency"];
+        }
+    }
+
+    static fromJS(data: any): HyperRequestDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new HyperRequestDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["amount"] = this.amount;
+        data["currency"] = this.currency;
+        return data; 
+    }
+
+    clone(): HyperRequestDto {
+        const json = this.toJSON();
+        let result = new HyperRequestDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IHyperRequestDto {
+    amount: number;
+    currency: string | undefined;
+}
+
+export class Result implements IResult {
+    code: string | undefined;
+    description: string | undefined;
+
+    constructor(data?: IResult) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.code = _data["code"];
+            this.description = _data["description"];
+        }
+    }
+
+    static fromJS(data: any): Result {
+        data = typeof data === 'object' ? data : {};
+        let result = new Result();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["code"] = this.code;
+        data["description"] = this.description;
+        return data; 
+    }
+
+    clone(): Result {
+        const json = this.toJSON();
+        let result = new Result();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IResult {
+    code: string | undefined;
+    description: string | undefined;
+}
+
+export class CheckOutResponse implements ICheckOutResponse {
+    result: Result;
+    buildNumber: string | undefined;
+    timestamp: moment.Moment;
+    ndc: string | undefined;
+    id: string | undefined;
+
+    constructor(data?: ICheckOutResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.result = _data["result"] ? Result.fromJS(_data["result"]) : <any>undefined;
+            this.buildNumber = _data["buildNumber"];
+            this.timestamp = _data["timestamp"] ? moment(_data["timestamp"].toString()) : <any>undefined;
+            this.ndc = _data["ndc"];
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): CheckOutResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new CheckOutResponse();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["buildNumber"] = this.buildNumber;
+        data["timestamp"] = this.timestamp ? this.timestamp.toISOString() : <any>undefined;
+        data["ndc"] = this.ndc;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): CheckOutResponse {
+        const json = this.toJSON();
+        let result = new CheckOutResponse();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICheckOutResponse {
+    result: Result;
+    buildNumber: string | undefined;
+    timestamp: moment.Moment;
+    ndc: string | undefined;
+    id: string | undefined;
+}
+
 export class PaymentDtoPagedResultDto implements IPaymentDtoPagedResultDto {
     totalCount: number;
     items: PaymentDto[] | undefined;
@@ -27066,6 +28100,7 @@ export class CreateRequestDto implements ICreateRequestDto {
     subcategoryId: number;
     deliveryCost: string | undefined;
     status: number;
+    receiverMobile: string | undefined;
     driverId: number | undefined;
 
     constructor(data?: ICreateRequestDto) {
@@ -27092,6 +28127,7 @@ export class CreateRequestDto implements ICreateRequestDto {
             this.subcategoryId = _data["subcategoryId"];
             this.deliveryCost = _data["deliveryCost"];
             this.status = _data["status"];
+            this.receiverMobile = _data["receiverMobile"];
             this.driverId = _data["driverId"];
         }
     }
@@ -27118,6 +28154,7 @@ export class CreateRequestDto implements ICreateRequestDto {
         data["subcategoryId"] = this.subcategoryId;
         data["deliveryCost"] = this.deliveryCost;
         data["status"] = this.status;
+        data["receiverMobile"] = this.receiverMobile;
         data["driverId"] = this.driverId;
         return data; 
     }
@@ -27144,6 +28181,7 @@ export interface ICreateRequestDto {
     subcategoryId: number;
     deliveryCost: string | undefined;
     status: number;
+    receiverMobile: string | undefined;
     driverId: number | undefined;
 }
 
@@ -30079,6 +31117,53 @@ export interface IResetPasswordDto {
     adminPassword: string | undefined;
     userId: number;
     newPassword: string | undefined;
+}
+
+export class UserRoleDto implements IUserRoleDto {
+    userID: number;
+    roleName: string | undefined;
+
+    constructor(data?: IUserRoleDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.userID = _data["userID"];
+            this.roleName = _data["roleName"];
+        }
+    }
+
+    static fromJS(data: any): UserRoleDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserRoleDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["userID"] = this.userID;
+        data["roleName"] = this.roleName;
+        return data; 
+    }
+
+    clone(): UserRoleDto {
+        const json = this.toJSON();
+        let result = new UserRoleDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IUserRoleDto {
+    userID: number;
+    roleName: string | undefined;
 }
 
 export class UserDtoPagedResultDto implements IUserDtoPagedResultDto {
