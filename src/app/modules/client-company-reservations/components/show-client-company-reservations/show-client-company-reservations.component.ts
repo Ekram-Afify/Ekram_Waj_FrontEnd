@@ -125,14 +125,11 @@ export class ShowClientCompanyReservationsComponent
   loadReservations() {
     this.spinner.show();
     let filetrObj: object = {};
-    $(".i-filter").each((ind: number, elem: Element) => {
-      if ($(elem).hasClass("table-dropdown-satus")) {
-        filetrObj[$(elem).attr("name")] = $(elem).find(":selected").val();
-      } else filetrObj[$(elem).attr("name")] = $(elem).val();
-    });
+
     debugger;
     this.state = filetrObj["state"];
     if (this.requestId && !filetrObj["Id"]) {
+    
       console.log("requestId : ", this.requestId);
 
       filetrObj["Id"] = this.requestId;
@@ -284,6 +281,13 @@ export class ShowClientCompanyReservationsComponent
     this.loadReservations();
   }
   applyFilters() {
+    let filetrObj: object = {};
+    $(".i-filter").each((ind: number, elem: Element) => {
+      if ($(elem).hasClass("table-dropdown-satus")) {
+       
+        filetrObj[$(elem).attr("name")] = $(elem).find(":selected").val();
+      } else filetrObj[$(elem).attr("name")] = $(elem).val();
+    });
     this.skipCount = 0;
     this.loadReservations();
   }
