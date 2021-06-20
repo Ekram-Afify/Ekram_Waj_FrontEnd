@@ -47,7 +47,8 @@
                 >
                 </p-sortIcon>
               </th>
-              <th>{{ "bill" | localize }}</th>
+             
+             
               <th></th>
             </tr>
             <tr>
@@ -121,8 +122,17 @@
                 >
                   {{ "OfferPrice" | localize }}
                 </button>
+               
               </td>
-            
+              <td>
+              
+                <button
+                class="btn icon-show"  
+                [routerLink]="['/app/reservations/details', personnel.id]"
+              >
+                <i class="material-icons color-Jade">visibility</i>
+              </button>
+              </td>
             </tr>
           </ng-template>
         </p-table>

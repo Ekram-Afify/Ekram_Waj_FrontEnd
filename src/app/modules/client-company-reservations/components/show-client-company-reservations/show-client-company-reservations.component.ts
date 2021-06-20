@@ -74,6 +74,7 @@ export class ShowClientCompanyReservationsComponent
   sub: any;
   category: any;
   filetrObj:Object= {};
+  interval: any;
   constructor(
     injector: Injector,
     private translationService: TranslationService,
@@ -110,18 +111,20 @@ export class ShowClientCompanyReservationsComponent
     //this.initStates();
     this.loadReservations(); 
     // lood  new reservation 
-    interval(6000).subscribe(
-      (value: number) => {
-        this.loadReservations(); 
-      },
-      (error: any) => {
-        console.log('error');
-      },
-      () => {
-        console.log('observable completed !');
-      }
-    );
+    this.interval = setInterval(() => {
+      this.loadReservations();  
+    }, 6000);
+
   
+  
+  }
+
+  ngOnDestroy() {
+    if (this.interval) {
+     
+      clearInterval(this.interval);
+    }
+    
   }
 
   loadReservations() {
