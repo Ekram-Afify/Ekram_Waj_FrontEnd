@@ -210,6 +210,7 @@ export class UpdateReservationComponent
     this.firstFormGroup = this._formBuilder.group({
       arrivalDateTime: ["", [Validators.required, Validators.maxLength(512)]],
       paymentWay: ["", []],
+      receiverMobile:["", [Validators.required, Validators.maxLength(512)]],
       notes: ["", [Validators.required, Validators.maxLength(512)]],
       startingPoint: ["", [Validators.required, Validators.maxLength(512)]],
       endingPoint: ["", [Validators.required, Validators.maxLength(512)]],
@@ -315,6 +316,7 @@ export class UpdateReservationComponent
     this.firstFormGroup.patchValue({
       arrivalDateTime: this.reservation.arrivalDateTime.toDate(),
       paymentWay: this.reservation.paymentWay,
+      receiverMobile:this.reservation.receiverMobile,
       notes: this.reservation.notes,
       startingPoint: this.reservation.startingPoint,
       endingPoint: this.reservation.endingPoint,
@@ -606,6 +608,7 @@ export class UpdateReservationComponent
       this.reservation.arrivalDateTime = this.firstFormGroup.value.arrivalDateTime;
       this.reservation.paymentWay = 1;
       this.reservation.notes = this.firstFormGroup.value.notes;
+      this.reservation.receiverMobile=this.firstFormGroup.value.receiverMobile,
       this.reservation.startingPoint = this.firstFormGroup.get(
         "startingPoint"
       ).value;

@@ -248,6 +248,7 @@ export class ShowReservationsComponent
       { field: "StratingPointTitle", header: this.l("startingPoint") },
       { field: "EndingPointTitle", header: this.l("endingPoint") },
       { field: "CompanyName", header: this.l("Company") },
+      { field: "receiverMobile", header: this.l("RecieverMobile") },
       { field: "Status", header: this.l("Status") },
       { field: "AcceptedDriverName", header: this.l("Drivers") },
       // { field: "Net", header: this.l("DeliveryCost"), stopFilter: true },

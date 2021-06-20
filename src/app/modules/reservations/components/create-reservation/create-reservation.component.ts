@@ -190,6 +190,7 @@ export class CreateReservationComponent
     this.firstFormGroup = this._formBuilder.group({
       arrivalDateTime: ["", [Validators.required, Validators.maxLength(512)]],
       paymentWay: ["", []],
+      receiverMobile:["", [Validators.required, Validators.maxLength(512)]],
       notes: ["", [Validators.required, Validators.maxLength(512)]],
       startingPoint: ["", [Validators.required, Validators.maxLength(512)]],
       endingPoint: ["", [Validators.required, Validators.maxLength(512)]],
@@ -450,6 +451,7 @@ export class CreateReservationComponent
     if (this.firstFormGroup.valid) {
       this.reservation.arrivalDateTime = this.firstFormGroup.value.arrivalDateTime;
       this.reservation.paymentWay = 1;
+      this.reservation.receiverMobile=this.firstFormGroup.value.receiverMobile
       this.reservation.notes = this.firstFormGroup.value.notes;
       this.reservation.startingPoint = this.firstFormGroup.get(
         "startingPoint"

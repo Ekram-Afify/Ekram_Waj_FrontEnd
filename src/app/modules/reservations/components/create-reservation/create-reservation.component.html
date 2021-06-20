@@ -500,7 +500,40 @@
                                                                     </div>
                                                                 </div>
 
-                                                                
+                                                             
+
+                                                                <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
+                                                                    <div class="section-inside">
+                                                                        <div class="text-form-field-researchAcquisitionAdmin text-left color-gray col-sm-2 col-12">
+                                                                            {{ 'RecieverMobile' |localize }}<span class="red">*</span>
+                                                                        </div>
+                                                                        <div class="col container-Engine-information">
+                                                                            <div class="row">
+                                                                                <div class="col-12 list-Engine-information">
+                                                                                    <div class="section-form-field">
+                                                                                        <span class="ui-float-label section-clear-input design-float-input">
+                                                                                            <input
+                                                                                                formControlName="receiverMobile"
+                                                                                                name="receiverMobile"
+                                                                                                class="float-input floatInput1"
+                                                                                                #title type="text"
+                                                                                                size="30" pInputText
+                                                                                               
+                                                                                                >
+                                                                                            <label for="float-input">
+                                                                                                {{ 'RecieverMobile' |localize }}
+                                                                                            </label>
+
+                                                                                        </span>
+                                                                                        <p *ngIf="(firstFormGroup.get('receiverMobile').errors && firstFormGroup.get('receiverMobile').errors.required ) && (firstFormGroup.get('receiverMobile').touched || firstFormSaving)" class="pragraphe-bottom-field text-right message-error col-12 m-0">
+                                                                                            {{ 'ThisFieldRequired' |localize }}
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
                                                                 <div class="section-form-field design-form-field-researchAcquisitionAdmin form-field-Type-of-submission">
                                                                     <div class="section-inside">
