@@ -69,6 +69,9 @@ export class ShowDriversComponent extends AppComponentBase implements OnInit {
   sorting: string;
   reset: any;
   availabelEdit = false;
+  IsMakeOfferPrice: any;
+  IsRecieveOrder: any;
+  filetrObj: object = {};
   constructor(
     injector: Injector,
 
@@ -98,16 +101,12 @@ export class ShowDriversComponent extends AppComponentBase implements OnInit {
 
   loadDrivers() {
     this.spinner.show();
-    let filetrObj: object = {};
-    $(".i-filter").each((ind: number, elem: Element) => {
-      filetrObj[$(elem).attr("name")] = $(elem).val();
-    });
-    this.IswaselDriver = filetrObj["isWaselDriver"];
-    this.IswaselVehicle = filetrObj["isWaselVehicle"];
+
+
     debugger;
     this._driverService
       .getAll(
-        JSON.stringify(filetrObj),
+        JSON.stringify(this.filetrObj),
         //this.name,
         this.company == null || this.company == undefined
           ? undefined
@@ -124,6 +123,14 @@ export class ShowDriversComponent extends AppComponentBase implements OnInit {
         this.IswaselVehicle == null || this.IswaselVehicle == undefined
           ? undefined
           : this.IswaselVehicle,
+
+          this.IsMakeOfferPrice == null || this.IsMakeOfferPrice == undefined
+          ? undefined
+          : this.IsMakeOfferPrice,
+          this.IsRecieveOrder == null || this.IsRecieveOrder == undefined
+          ? undefined
+          : this.IsRecieveOrder,
+
           false,
         this.sorting == "" ? undefined : this.sorting,
         this.skipCount,
@@ -218,7 +225,7 @@ export class ShowDriversComponent extends AppComponentBase implements OnInit {
       { field: "isWaselDriver", header: this.l("IsWaselDriver") },
       { field: "isWaselVehicle", header: this.l("IsWaselVehicle") },
       { field: "makePriceOffer", header: this.l("MakePriceOffer") },
-      { field: "isReceiveOrder", header: this.l("IsReceiveOrder") },
+      { field: "IsRecieveOrder", header: this.l("IsRecieveOrder") },
     ];
   }
   toggle(driverId, event: MatSlideToggleChange) {
@@ -252,18 +259,29 @@ export class ShowDriversComponent extends AppComponentBase implements OnInit {
     // console.log("e : ", event.checked);
   }
   resetFilters() {
-    this.reset = $(".i-filter");
-    this.reset.val("");
+ // this.filetrObj=null;
+ this.reset = $(".i-filter");
+ this.reset.val("");
+  this.filetrObj=undefined
     this.subcategory = null;
     this.company = null;
     this.state = null;
-
+    this.IsMakeOfferPrice=undefined,
+    this.IsRecieveOrder=undefined;
     this.skipCount = 0;
     this.maxResultCount = 10;
     this.name = "";
     this.loadDrivers();
   }
   applyFilters() {
+    this.filetrObj={};
+    $(".i-filter").each((ind: number, elem: Element) => {
+      this.filetrObj[$(elem).attr("name")] = $(elem).val();
+    });
+    this.IswaselDriver = this.filetrObj["isWaselDriver"];
+    this.IswaselVehicle = this.filetrObj["isWaselVehicle"];
+    this.IsMakeOfferPrice = this.filetrObj["makePriceOffer"];
+    this.IsRecieveOrder = this.filetrObj["isRecieveOrder"];
     debugger;
     this.skipCount = 0;
     this.loadDrivers();

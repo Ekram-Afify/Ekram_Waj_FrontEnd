@@ -2013,13 +2013,15 @@ export class AdminDriverServiceProxy {
      * @param isAvilible (optional) 
      * @param isWaselDriver (optional) 
      * @param isWaselVehicle (optional) 
+     * @param isMakeOfferPrice (optional) 
+     * @param isReceiveOrder (optional) 
      * @param isNewDrivers (optional) 
      * @param sorting (optional) 
      * @param skipCount (optional) 
      * @param maxResultCount (optional) 
      * @return Success
      */
-    getAll(keyword: string | undefined, companyId: number | undefined, subcategoryId: number | undefined, isAvilible: boolean | undefined, isWaselDriver: boolean | undefined, isWaselVehicle: boolean | undefined, isNewDrivers: boolean | undefined, sorting: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<AdminDriverDtoPagedResultDto> {
+    getAll(keyword: string | undefined, companyId: number | undefined, subcategoryId: number | undefined, isAvilible: boolean | undefined, isWaselDriver: boolean | undefined, isWaselVehicle: boolean | undefined, isMakeOfferPrice: boolean | undefined, isReceiveOrder: boolean | undefined, isNewDrivers: boolean | undefined, sorting: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<AdminDriverDtoPagedResultDto> {
         let url_ = this.baseUrl + "/api/services/app/AdminDriver/GetAll?";
         if (keyword === null)
             throw new Error("The parameter 'keyword' cannot be null.");
@@ -2045,6 +2047,14 @@ export class AdminDriverServiceProxy {
             throw new Error("The parameter 'isWaselVehicle' cannot be null.");
         else if (isWaselVehicle !== undefined)
             url_ += "IsWaselVehicle=" + encodeURIComponent("" + isWaselVehicle) + "&";
+        if (isMakeOfferPrice === null)
+            throw new Error("The parameter 'isMakeOfferPrice' cannot be null.");
+        else if (isMakeOfferPrice !== undefined)
+            url_ += "IsMakeOfferPrice=" + encodeURIComponent("" + isMakeOfferPrice) + "&";
+        if (isReceiveOrder === null)
+            throw new Error("The parameter 'isReceiveOrder' cannot be null.");
+        else if (isReceiveOrder !== undefined)
+            url_ += "IsReceiveOrder=" + encodeURIComponent("" + isReceiveOrder) + "&";
         if (isNewDrivers === null)
             throw new Error("The parameter 'isNewDrivers' cannot be null.");
         else if (isNewDrivers !== undefined)
@@ -7228,6 +7238,7 @@ export class CompanyDriversReuestsServiceProxy {
 
     /**
      * @param subcategoryId (optional) 
+     * @param categoryId (optional) 
      * @param companyId (optional) 
      * @param keyWord (optional) 
      * @param sorting (optional) 
@@ -7235,12 +7246,16 @@ export class CompanyDriversReuestsServiceProxy {
      * @param maxResultCount (optional) 
      * @return Success
      */
-    getAll(subcategoryId: number | undefined, companyId: number | undefined, keyWord: string | undefined, sorting: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CompanyDriversReuestDtoPagedResultDto> {
+    getAll(subcategoryId: number | undefined, categoryId: number | undefined, companyId: number | undefined, keyWord: string | undefined, sorting: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CompanyDriversReuestDtoPagedResultDto> {
         let url_ = this.baseUrl + "/api/services/app/CompanyDriversReuests/GetAll?";
         if (subcategoryId === null)
             throw new Error("The parameter 'subcategoryId' cannot be null.");
         else if (subcategoryId !== undefined)
             url_ += "SubcategoryId=" + encodeURIComponent("" + subcategoryId) + "&";
+        if (categoryId === null)
+            throw new Error("The parameter 'categoryId' cannot be null.");
+        else if (categoryId !== undefined)
+            url_ += "CategoryId=" + encodeURIComponent("" + categoryId) + "&";
         if (companyId === null)
             throw new Error("The parameter 'companyId' cannot be null.");
         else if (companyId !== undefined)
@@ -20612,6 +20627,65 @@ export interface IAdminCreateRequestDto {
     receiverMobile: string | undefined;
 }
 
+export class ShortDriverDto implements IShortDriverDto {
+    firstName: string | undefined;
+    lastName: string | undefined;
+    companyId: number | undefined;
+    companyName: string | undefined;
+    id: number;
+
+    constructor(data?: IShortDriverDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.companyId = _data["companyId"];
+            this.companyName = _data["companyName"];
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): ShortDriverDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ShortDriverDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["companyId"] = this.companyId;
+        data["companyName"] = this.companyName;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): ShortDriverDto {
+        const json = this.toJSON();
+        let result = new ShortDriverDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IShortDriverDto {
+    firstName: string | undefined;
+    lastName: string | undefined;
+    companyId: number | undefined;
+    companyName: string | undefined;
+    id: number;
+}
+
 export class ShortClientDto implements IShortClientDto {
     firstName: string | undefined;
     lastName: string | undefined;
@@ -20692,6 +20766,7 @@ export class AdminRequestDto implements IAdminRequestDto {
     rate: number | undefined;
     isClientRated: boolean | undefined;
     clientRate: number | undefined;
+    driver: ShortDriverDto;
     creationTime: moment.Moment;
     ctString: string | undefined;
     acceptedDriverName: string | undefined;
@@ -20734,6 +20809,7 @@ export class AdminRequestDto implements IAdminRequestDto {
             this.rate = _data["rate"];
             this.isClientRated = _data["isClientRated"];
             this.clientRate = _data["clientRate"];
+            this.driver = _data["driver"] ? ShortDriverDto.fromJS(_data["driver"]) : <any>undefined;
             this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
             this.ctString = _data["ctString"];
             this.acceptedDriverName = _data["acceptedDriverName"];
@@ -20776,6 +20852,7 @@ export class AdminRequestDto implements IAdminRequestDto {
         data["rate"] = this.rate;
         data["isClientRated"] = this.isClientRated;
         data["clientRate"] = this.clientRate;
+        data["driver"] = this.driver ? this.driver.toJSON() : <any>undefined;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["ctString"] = this.ctString;
         data["acceptedDriverName"] = this.acceptedDriverName;
@@ -20818,6 +20895,7 @@ export interface IAdminRequestDto {
     rate: number | undefined;
     isClientRated: boolean | undefined;
     clientRate: number | undefined;
+    driver: ShortDriverDto;
     creationTime: moment.Moment;
     ctString: string | undefined;
     acceptedDriverName: string | undefined;
@@ -24906,6 +24984,7 @@ export interface IUpdateCompanyDto {
 }
 
 export class CompanyDriversReuestDto implements ICompanyDriversReuestDto {
+    categoryDisplayName: string | undefined;
     isReg: boolean | undefined;
     discountPercentage: number;
     arrivalDateTime: moment.Moment;
@@ -24947,6 +25026,7 @@ export class CompanyDriversReuestDto implements ICompanyDriversReuestDto {
 
     init(_data?: any) {
         if (_data) {
+            this.categoryDisplayName = _data["categoryDisplayName"];
             this.isReg = _data["isReg"];
             this.discountPercentage = _data["discountPercentage"];
             this.arrivalDateTime = _data["arrivalDateTime"] ? moment(_data["arrivalDateTime"].toString()) : <any>undefined;
@@ -24988,6 +25068,7 @@ export class CompanyDriversReuestDto implements ICompanyDriversReuestDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["categoryDisplayName"] = this.categoryDisplayName;
         data["isReg"] = this.isReg;
         data["discountPercentage"] = this.discountPercentage;
         data["arrivalDateTime"] = this.arrivalDateTime ? this.arrivalDateTime.toISOString() : <any>undefined;
@@ -25029,6 +25110,7 @@ export class CompanyDriversReuestDto implements ICompanyDriversReuestDto {
 }
 
 export interface ICompanyDriversReuestDto {
+    categoryDisplayName: string | undefined;
     isReg: boolean | undefined;
     discountPercentage: number;
     arrivalDateTime: moment.Moment;

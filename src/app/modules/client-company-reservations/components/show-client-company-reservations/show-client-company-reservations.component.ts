@@ -72,6 +72,8 @@ export class ShowClientCompanyReservationsComponent
   requestId;
   availabelEdit = false;
   sub: any;
+  category: any;
+  filetrObj:Object= {};
   constructor(
     injector: Injector,
     private translationService: TranslationService,
@@ -104,11 +106,11 @@ export class ShowClientCompanyReservationsComponent
   
     this.initItems();
     this.initSubs();
-    this.initComps();
-    this.initStates();
+   // this.initComps();
+    //this.initStates();
     this.loadReservations(); 
     // lood  new reservation 
-    interval(300000).subscribe(
+    interval(6000).subscribe(
       (value: number) => {
         this.loadReservations(); 
       },
@@ -124,15 +126,15 @@ export class ShowClientCompanyReservationsComponent
 
   loadReservations() {
     this.spinner.show();
-    let filetrObj: object = {};
-
+    
     debugger;
-    this.state = filetrObj["state"];
-    if (this.requestId && !filetrObj["Id"]) {
+
+    // this.state = this.filetrObj["state"];
+    if (this.requestId && !this.filetrObj["Id"] && this.filetrObj!=undefined) {
     
       console.log("requestId : ", this.requestId);
 
-      filetrObj["Id"] = this.requestId;
+      this.filetrObj["Id"] = this.requestId;
     }
 
     this._reservationService
@@ -141,11 +143,12 @@ export class ShowClientCompanyReservationsComponent
         this.subcategory == null || this.subcategory === undefined
           ? undefined
           : this.subcategory.value,
+         undefined,
         this.company == null || this.company === undefined
           ? undefined
           : this.company.value,
          
-        JSON.stringify(filetrObj),
+        JSON.stringify(this.filetrObj),
         this.sorting === "" ? undefined : this.sorting,
         this.skipCount,
         this.maxResultCount
@@ -161,20 +164,20 @@ export class ShowClientCompanyReservationsComponent
       });
   }
 
-  initComps() {
-    this._companyService
-      .getAll("", "", 0, 1000)
-      .pipe(finalize(() => {}))
-      .subscribe((result: CompanyDtoPagedResultDto) => {
-        const ReqResult = result.items;
+  // initComps() {
+  //   this._companyService
+  //     .getAll("", "", 0, 1000)
+  //     .pipe(finalize(() => {}))
+  //     .subscribe((result: CompanyDtoPagedResultDto) => {
+  //       const ReqResult = result.items;
 
-        this.companies = [];
-        this.companies.push({ label: this.l("Company"), value: null });
-        ReqResult.forEach((element) => {
-          this.companies.push({ label: element.name, value: element.id });
-        });
-      });
-  }
+  //       this.companies = [];
+  //       this.companies.push({ label: this.l("Company"), value: null });
+  //       ReqResult.forEach((element) => {
+  //         this.companies.push({ label: element.name, value: element.id });
+  //       });
+  //     });
+  // }
 
   showMenuItem(permissionName): boolean {
     return this.permission.isGranted(permissionName);
@@ -195,27 +198,8 @@ export class ShowClientCompanyReservationsComponent
       });
   }
 
-  initStates() {
-    this._requestStatusServiceProxy
-      .getAllRequestStatus()
-      .pipe(finalize(() => {}))
-      .subscribe((result: any) => {
-        const statesResult = result;
-        statesResult.forEach((element) => {
-          this.states.push({
-            label:
-              getCurrentLanguage() === "en" ? element.nameEn : element.nameAr,
-            value: element.id,
-          });
-        });
-      });
 
-    // this.states.push({ label: this.l('NotOffered'), value: 1 });
-    // this.states.push({ label: this.l('Offered'), value: 2 });
-    // this.states.push({ label: this.l('AcceptedOffer'), value: 3 });
-    // this.states.push({ label: this.l('FinishedOffer'), value: 4 });
-    // this.states.push({ label: this.l('CanceledOffer'), value: 5 });
-  }
+
 
   changePaginationTable(event) {
     this.rowTable = event.value;
@@ -255,10 +239,11 @@ export class ShowClientCompanyReservationsComponent
     ];
     this.personnelsCols = [
       { field: "Id", header: this.l("ReservatiobId") },
+      { field: "Category", header: this.l("Category") },
       { field: "Subcategory", header: this.l("SubCategory") },
       { field: "StratingPointTitle", header: this.l("startingPoint") },
       { field: "EndingPointTitle", header: this.l("endingPoint") },
-      { field: "CompanyName", header: this.l("Company") },
+      { field: "customerName", header: this.l("customerName") },
       // { field: "Net", header: this.l("DeliveryCost"), stopFilter: true },
       {
         field: "CreationTime",
@@ -271,6 +256,7 @@ export class ShowClientCompanyReservationsComponent
   resetFilters() {
     this.reset = $(".i-filter");
     this.reset.val("");
+    this.filetrObj=undefined;
     this.subcategory = null;
     this.state = null;
     this.company = null;
@@ -282,12 +268,12 @@ export class ShowClientCompanyReservationsComponent
   }
   applyFilters() {
     //
-    let filetrObj: object = {};
+    this.filetrObj = {};
     $(".i-filter").each((ind: number, elem: Element) => {
       if ($(elem).hasClass("table-dropdown-satus")) {
        
-        filetrObj[$(elem).attr("name")] = $(elem).find(":selected").val();
-      } else filetrObj[$(elem).attr("name")] = $(elem).val();
+        this.filetrObj[$(elem).attr("name")] = $(elem).find(":selected").val();
+      } else this.filetrObj[$(elem).attr("name")] = $(elem).val();
     });
     this.skipCount = 0;
     this.loadReservations();

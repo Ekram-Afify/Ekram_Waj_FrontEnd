@@ -105,10 +105,11 @@
           <ng-template pTemplate="body" let-personnel>
             <tr>
               <td>{{ personnel.id }}</td>
+              <td>{{ personnel.categoryDisplayName }}</td>
               <td>{{ personnel.subcategoryDisplayName }}</td>
               <td>{{ personnel.stratingPointTitle }}</td>
               <td>{{ personnel.endingPointTitle }}</td>
-              <td>{{ personnel.client?.companyName }}</td>
+              <td>{{ personnel.client?.firstName }} {{ personnel.client?.lastName }}</td>
       
             
               <!-- <td>{{ personnel.net }}</td> -->

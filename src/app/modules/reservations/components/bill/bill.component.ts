@@ -71,6 +71,8 @@ export class BillComponent extends AppComponentBase implements OnInit {
         true,
         undefined,
         undefined,
+        undefined,
+        undefined,
         false
         ,
         "",

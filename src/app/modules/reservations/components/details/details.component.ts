@@ -156,6 +156,8 @@ export class DetailsComponent extends AppComponentBase implements OnInit {
         undefined,
         undefined,
         undefined,
+        undefined,
+        undefined,
         false,
         "",
         0,

@@ -139,8 +139,10 @@ currentDate:any;
         this.IswaselVehicle == null || this.IswaselVehicle == undefined
           ? undefined
           : this.IswaselVehicle,
-          true
-          ,
+          undefined,
+          undefined,
+          true,
+          
         this.sorting == "" ? undefined : this.sorting,
         this.skipCount,
         this.maxResultCount

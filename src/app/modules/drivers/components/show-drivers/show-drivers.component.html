@@ -105,7 +105,9 @@
                 <ng-container
                   *ngIf="
                     col.field != 'isWaselDriver' &&
-                    col.field != 'isWaselVehicle'
+                    col.field != 'isWaselVehicle' && 
+                    col.field != 'makePriceOffer' && 
+                    col.field != 'IsRecieveOrder'
                   "
                 >
                   <input
@@ -142,6 +144,40 @@
                   >
                     <option value="" selected disabled>
                       {{ "IsWaselVehicle" | localize }}
+                    </option>
+                    <option value="true">
+                      {{ "Yes" | localize }}
+                    </option>
+                    <option value="false">
+                      {{ "No" | localize }}
+                    </option>
+                  </select>
+                </ng-container>
+                <ng-container *ngIf="col.field == 'makePriceOffer'">
+                  <select
+                    class="float-input input-search-all-table w-100 i-filter"
+                    name="makePriceOffer"
+                    height="35"
+                  >
+                    <option value="" selected disabled>
+                      {{ "MakePriceOffer" | localize }}
+                    </option>
+                    <option value="true">
+                      {{ "Yes" | localize }}
+                    </option>
+                    <option value="false">
+                      {{ "No" | localize }}
+                    </option>
+                  </select>
+                </ng-container>
+                <ng-container *ngIf="col.field == 'IsRecieveOrder'">
+                  <select
+                    class="float-input input-search-all-table w-100 i-filter"
+                    name="isRecieveOrder"
+                    height="35"
+                  >
+                    <option value="" selected disabled>
+                      {{ "IsRecieveOrder" | localize }}
                     </option>
                     <option value="true">
                       {{ "Yes" | localize }}

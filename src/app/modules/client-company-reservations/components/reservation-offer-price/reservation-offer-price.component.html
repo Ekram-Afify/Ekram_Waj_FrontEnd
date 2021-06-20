@@ -449,8 +449,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="button-directions">
-                                                        <!-- <button
-                                                                    class="btn border-gray ml-2 col color-Jade button-design button-cancel-step-form" (click)="cancel()">{{ 'Cancel' |localize }}</button> -->
+                                                        
+                                                        <button class="btn border-gray ml-2 color-Jade button-design button-cancel-step-form" (click)="back()">{{ 'Cancel' |localize }}</button>
                                                         <button type="button" (click)="AddOfferPrice()"
                                                             [disabled]="driverId==0 ||offerPrice.deliveryCost ==0  || offerPrice.deliveryCost==undefined"
                                                             class="btn border-gray mr-2 color-white background-color-Jade button-design">{{
