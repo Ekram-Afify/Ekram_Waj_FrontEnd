@@ -34,6 +34,7 @@ import * as ApiServiceProxies from "./service-proxies";
     ApiServiceProxies.AdminPanelUserServiceProxy,
     ApiServiceProxies.PaymentServiceProxy,
     ApiServiceProxies.CompanyDriversReuestsServiceProxy,
+    ApiServiceProxies.ComplaintServiceProxy,
 
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
   ],

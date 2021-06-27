@@ -70,6 +70,15 @@ import { ChangePasswordComponent } from "./users/change-password/change-password
             canActivate: [AppRouteGuard],
           },
           {
+            path: "complaints",
+            loadChildren: () =>
+              import("./modules/complaints/complaints.module").then(
+                (m) => m.ComplaintsModule
+              ),
+            data: { permission: "Pages.Users" },
+            canActivate: [AppRouteGuard],
+          },
+          {
             path: "drivers",
             loadChildren: () =>
               import("./modules/drivers/drivers.module").then(
