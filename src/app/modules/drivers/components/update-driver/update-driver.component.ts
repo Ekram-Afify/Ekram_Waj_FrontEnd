@@ -51,7 +51,7 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
   //agm map
   latitude: number;
   longitude: number;
-  zoom: number;
+  zoom: number=8;
   platetypes: SelectItem[] = [];
   address: string;
   private geoCoder;
@@ -700,7 +700,7 @@ export class UpdateDriverComponent extends AppComponentBase implements OnInit {
         [Validators.required, Validators.maxLength(512)],
       ],
       dateOfBirthGregorian: [
-        this.driver.dateOfBirthGregorian.toDate(),
+        (this.driver.dateOfBirthGregorian!=undefined)?this.driver.dateOfBirthGregorian.toDate():[],
         [Validators.required, Validators.maxLength(512)],
       ],
       dateOfBirthHijri: [
